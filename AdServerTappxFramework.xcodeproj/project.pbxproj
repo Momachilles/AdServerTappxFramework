@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D1AC85991DBA236100088A74 /* AdServerTappxFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */; };
+		D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */; };
+		D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D1AC859A1DBA236100088A74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1AC85861DBA236100088A74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1AC858E1DBA236100088A74;
+			remoteInfo = AdServerTappxFramework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdServerTappxFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdServerTappxFramework.h; sourceTree = "<group>"; };
+		D1AC85931DBA236100088A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1AC85981DBA236100088A74 /* AdServerTappxFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdServerTappxFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkTests.swift; sourceTree = "<group>"; };
+		D1AC859F1DBA236100088A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D1AC858B1DBA236100088A74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85951DBA236100088A74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1AC85991DBA236100088A74 /* AdServerTappxFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D1AC85851DBA236100088A74 = {
+			isa = PBXGroup;
+			children = (
+				D1AC85911DBA236100088A74 /* AdServerTappxFramework */,
+				D1AC859C1DBA236100088A74 /* AdServerTappxFrameworkTests */,
+				D1AC85901DBA236100088A74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D1AC85901DBA236100088A74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */,
+				D1AC85981DBA236100088A74 /* AdServerTappxFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D1AC85911DBA236100088A74 /* AdServerTappxFramework */ = {
+			isa = PBXGroup;
+			children = (
+				D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */,
+				D1AC85931DBA236100088A74 /* Info.plist */,
+			);
+			path = AdServerTappxFramework;
+			sourceTree = "<group>";
+		};
+		D1AC859C1DBA236100088A74 /* AdServerTappxFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */,
+				D1AC859F1DBA236100088A74 /* Info.plist */,
+			);
+			path = AdServerTappxFrameworkTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D1AC858C1DBA236100088A74 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D1AC858E1DBA236100088A74 /* AdServerTappxFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1AC85A31DBA236100088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFramework" */;
+			buildPhases = (
+				D1AC858A1DBA236100088A74 /* Sources */,
+				D1AC858B1DBA236100088A74 /* Frameworks */,
+				D1AC858C1DBA236100088A74 /* Headers */,
+				D1AC858D1DBA236100088A74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdServerTappxFramework;
+			productName = AdServerTappxFramework;
+			productReference = D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D1AC85971DBA236100088A74 /* AdServerTappxFrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1AC85A61DBA236100088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkTests" */;
+			buildPhases = (
+				D1AC85941DBA236100088A74 /* Sources */,
+				D1AC85951DBA236100088A74 /* Frameworks */,
+				D1AC85961DBA236100088A74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1AC859B1DBA236100088A74 /* PBXTargetDependency */,
+			);
+			name = AdServerTappxFrameworkTests;
+			productName = AdServerTappxFrameworkTests;
+			productReference = D1AC85981DBA236100088A74 /* AdServerTappxFrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D1AC85861DBA236100088A74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = 4Crew;
+				TargetAttributes = {
+					D1AC858E1DBA236100088A74 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = N74TV576H8;
+						ProvisioningStyle = Automatic;
+					};
+					D1AC85971DBA236100088A74 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = N74TV576H8;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D1AC85891DBA236100088A74 /* Build configuration list for PBXProject "AdServerTappxFramework" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D1AC85851DBA236100088A74;
+			productRefGroup = D1AC85901DBA236100088A74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D1AC858E1DBA236100088A74 /* AdServerTappxFramework */,
+				D1AC85971DBA236100088A74 /* AdServerTappxFrameworkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1AC858D1DBA236100088A74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85961DBA236100088A74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D1AC858A1DBA236100088A74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85941DBA236100088A74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D1AC859B1DBA236100088A74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1AC858E1DBA236100088A74 /* AdServerTappxFramework */;
+			targetProxy = D1AC859A1DBA236100088A74 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D1AC85A11DBA236100088A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D1AC85A21DBA236100088A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D1AC85A41DBA236100088A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = N74TV576H8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AdServerTappxFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFramework;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D1AC85A51DBA236100088A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = N74TV576H8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AdServerTappxFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFramework;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D1AC85A71DBA236100088A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = N74TV576H8;
+				INFOPLIST_FILE = AdServerTappxFrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D1AC85A81DBA236100088A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = N74TV576H8;
+				INFOPLIST_FILE = AdServerTappxFrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D1AC85891DBA236100088A74 /* Build configuration list for PBXProject "AdServerTappxFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1AC85A11DBA236100088A74 /* Debug */,
+				D1AC85A21DBA236100088A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1AC85A31DBA236100088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1AC85A41DBA236100088A74 /* Debug */,
+				D1AC85A51DBA236100088A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D1AC85A61DBA236100088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1AC85A71DBA236100088A74 /* Debug */,
+				D1AC85A81DBA236100088A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D1AC85861DBA236100088A74 /* Project object */;
+}
