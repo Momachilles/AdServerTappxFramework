@@ -10,6 +10,15 @@
 		D1AC85991DBA236100088A74 /* AdServerTappxFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */; };
 		D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */; };
 		D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1AC85C31DBA23FF00088A74 /* AdServerTappxFrameworkAdMob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AC85B21DBA23A000088A74 /* AdServerTappxFrameworkAdMob.framework */; };
+		D1AC85C61DBA248000088A74 /* AdServerTappxFrameworkAdMobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC85C41DBA245C00088A74 /* AdServerTappxFrameworkAdMobTests.swift */; };
+		D1AC85CA1DBA26F100088A74 /* AdServerTappxFrameworkAdMob.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85C91DBA26CF00088A74 /* AdServerTappxFrameworkAdMob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1AC85DD1DBA2AC600088A74 /* Greetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC85CC1DBA274000088A74 /* Greetings.swift */; };
+		D1AC85DE1DBA2AE200088A74 /* Greetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC85CC1DBA274000088A74 /* Greetings.swift */; };
+		D1EF1BA71DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
+		D1EF1BA81DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
+		D1EF1BA91DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
+		D1EF1BAA1DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,6 +29,13 @@
 			remoteGlobalIDString = D1AC858E1DBA236100088A74;
 			remoteInfo = AdServerTappxFramework;
 		};
+		D1AC85C11DBA23F800088A74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1AC85861DBA236100088A74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1AC85A91DBA23A000088A74;
+			remoteInfo = AdServerTappxFrameworkAdMob;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +45,14 @@
 		D1AC85981DBA236100088A74 /* AdServerTappxFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdServerTappxFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkTests.swift; sourceTree = "<group>"; };
 		D1AC859F1DBA236100088A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1AC85B21DBA23A000088A74 /* AdServerTappxFrameworkAdMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdServerTappxFrameworkAdMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1AC85B31DBA23A000088A74 /* AdServerTappxFramework copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AdServerTappxFramework copy-Info.plist"; path = "/Users/dalarcon/Development/4Crew/AdServerTappxFramework/AdServerTappxFramework copy-Info.plist"; sourceTree = "<absolute>"; };
+		D1AC85BF1DBA23AA00088A74 /* AdServerTappxFrameworkTestsAdMob.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdServerTappxFrameworkTestsAdMob.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1AC85C01DBA23AA00088A74 /* AdServerTappxFrameworkTests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AdServerTappxFrameworkTests copy-Info.plist"; path = "/Users/dalarcon/Development/4Crew/AdServerTappxFramework/AdServerTappxFrameworkTests copy-Info.plist"; sourceTree = "<absolute>"; };
+		D1AC85C41DBA245C00088A74 /* AdServerTappxFrameworkAdMobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkAdMobTests.swift; sourceTree = "<group>"; };
+		D1AC85C91DBA26CF00088A74 /* AdServerTappxFrameworkAdMob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdServerTappxFrameworkAdMob.h; sourceTree = "<group>"; };
+		D1AC85CC1DBA274000088A74 /* Greetings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Greetings.swift; sourceTree = "<group>"; };
+		D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFramework.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +71,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1AC85AB1DBA23A000088A74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85B91DBA23AA00088A74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1AC85C31DBA23FF00088A74 /* AdServerTappxFrameworkAdMob.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -56,6 +95,8 @@
 				D1AC85911DBA236100088A74 /* AdServerTappxFramework */,
 				D1AC859C1DBA236100088A74 /* AdServerTappxFrameworkTests */,
 				D1AC85901DBA236100088A74 /* Products */,
+				D1AC85B31DBA23A000088A74 /* AdServerTappxFramework copy-Info.plist */,
+				D1AC85C01DBA23AA00088A74 /* AdServerTappxFrameworkTests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +105,8 @@
 			children = (
 				D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */,
 				D1AC85981DBA236100088A74 /* AdServerTappxFrameworkTests.xctest */,
+				D1AC85B21DBA23A000088A74 /* AdServerTappxFrameworkAdMob.framework */,
+				D1AC85BF1DBA23AA00088A74 /* AdServerTappxFrameworkTestsAdMob.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +114,12 @@
 		D1AC85911DBA236100088A74 /* AdServerTappxFramework */ = {
 			isa = PBXGroup;
 			children = (
+				D1AC85CB1DBA272100088A74 /* Network */,
 				D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */,
+				D1AC85C91DBA26CF00088A74 /* AdServerTappxFrameworkAdMob.h */,
 				D1AC85931DBA236100088A74 /* Info.plist */,
+				D1AC85CC1DBA274000088A74 /* Greetings.swift */,
+				D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */,
 			);
 			path = AdServerTappxFramework;
 			sourceTree = "<group>";
@@ -82,8 +129,16 @@
 			children = (
 				D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */,
 				D1AC859F1DBA236100088A74 /* Info.plist */,
+				D1AC85C41DBA245C00088A74 /* AdServerTappxFrameworkAdMobTests.swift */,
 			);
 			path = AdServerTappxFrameworkTests;
+			sourceTree = "<group>";
+		};
+		D1AC85CB1DBA272100088A74 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +149,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85AC1DBA23A000088A74 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1AC85CA1DBA26F100088A74 /* AdServerTappxFrameworkAdMob.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +199,42 @@
 			productReference = D1AC85981DBA236100088A74 /* AdServerTappxFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D1AC85A91DBA23A000088A74 /* AdServerTappxFrameworkAdMob */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1AC85AF1DBA23A000088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkAdMob" */;
+			buildPhases = (
+				D1AC85AA1DBA23A000088A74 /* Sources */,
+				D1AC85AB1DBA23A000088A74 /* Frameworks */,
+				D1AC85AC1DBA23A000088A74 /* Headers */,
+				D1AC85AE1DBA23A000088A74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdServerTappxFrameworkAdMob;
+			productName = AdServerTappxFramework;
+			productReference = D1AC85B21DBA23A000088A74 /* AdServerTappxFrameworkAdMob.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D1AC85B41DBA23AA00088A74 /* AdServerTappxFrameworkTestsAdMob */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1AC85BC1DBA23AA00088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkTestsAdMob" */;
+			buildPhases = (
+				D1AC85B71DBA23AA00088A74 /* Sources */,
+				D1AC85B91DBA23AA00088A74 /* Frameworks */,
+				D1AC85BB1DBA23AA00088A74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1AC85C21DBA23F800088A74 /* PBXTargetDependency */,
+			);
+			name = AdServerTappxFrameworkTestsAdMob;
+			productName = AdServerTappxFrameworkTests;
+			productReference = D1AC85BF1DBA23AA00088A74 /* AdServerTappxFrameworkTestsAdMob.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,12 +248,20 @@
 					D1AC858E1DBA236100088A74 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = N74TV576H8;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					D1AC85971DBA236100088A74 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = N74TV576H8;
 						ProvisioningStyle = Automatic;
+					};
+					D1AC85A91DBA23A000088A74 = {
+						DevelopmentTeam = N74TV576H8;
+						LastSwiftMigration = 0800;
+					};
+					D1AC85B41DBA23AA00088A74 = {
+						DevelopmentTeam = N74TV576H8;
 					};
 				};
 			};
@@ -172,6 +279,8 @@
 			targets = (
 				D1AC858E1DBA236100088A74 /* AdServerTappxFramework */,
 				D1AC85971DBA236100088A74 /* AdServerTappxFrameworkTests */,
+				D1AC85A91DBA23A000088A74 /* AdServerTappxFrameworkAdMob */,
+				D1AC85B41DBA23AA00088A74 /* AdServerTappxFrameworkTestsAdMob */,
 			);
 		};
 /* End PBXProject section */
@@ -191,6 +300,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D1AC85AE1DBA23A000088A74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85BB1DBA23AA00088A74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -198,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1EF1BA71DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
+				D1AC85DD1DBA2AC600088A74 /* Greetings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +330,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1EF1BA81DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85AA1DBA23A000088A74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1EF1BA91DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
+				D1AC85DE1DBA2AE200088A74 /* Greetings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1AC85B71DBA23AA00088A74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1EF1BAA1DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
+				D1AC85C61DBA248000088A74 /* AdServerTappxFrameworkAdMobTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +360,11 @@
 			isa = PBXTargetDependency;
 			target = D1AC858E1DBA236100088A74 /* AdServerTappxFramework */;
 			targetProxy = D1AC859A1DBA236100088A74 /* PBXContainerItemProxy */;
+		};
+		D1AC85C21DBA23F800088A74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1AC85A91DBA23A000088A74 /* AdServerTappxFrameworkAdMob */;
+			targetProxy = D1AC85C11DBA23F800088A74 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -261,7 +410,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -308,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -322,6 +471,7 @@
 		D1AC85A41DBA236100088A74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = N74TV576H8;
@@ -334,6 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -341,6 +492,7 @@
 		D1AC85A51DBA236100088A74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = N74TV576H8;
@@ -360,6 +512,7 @@
 		D1AC85A71DBA236100088A74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = N74TV576H8;
 				INFOPLIST_FILE = AdServerTappxFrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -372,8 +525,76 @@
 		D1AC85A81DBA236100088A74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = N74TV576H8;
 				INFOPLIST_FILE = AdServerTappxFrameworkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D1AC85B01DBA23A000088A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = N74TV576H8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "AdServerTappxFramework copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFramework;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D1AC85B11DBA23A000088A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = N74TV576H8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "AdServerTappxFramework copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFramework;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D1AC85BD1DBA23AA00088A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = N74TV576H8;
+				INFOPLIST_FILE = "AdServerTappxFrameworkTests copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D1AC85BE1DBA23AA00088A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = N74TV576H8;
+				INFOPLIST_FILE = "AdServerTappxFrameworkTests copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.4crew.sada.AdServerTappxFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -400,6 +621,7 @@
 				D1AC85A51DBA236100088A74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1AC85A61DBA236100088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +630,25 @@
 				D1AC85A81DBA236100088A74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1AC85AF1DBA23A000088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkAdMob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1AC85B01DBA23A000088A74 /* Debug */,
+				D1AC85B11DBA23A000088A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1AC85BC1DBA23AA00088A74 /* Build configuration list for PBXNativeTarget "AdServerTappxFrameworkTestsAdMob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1AC85BD1DBA23AA00088A74 /* Debug */,
+				D1AC85BE1DBA23AA00088A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
