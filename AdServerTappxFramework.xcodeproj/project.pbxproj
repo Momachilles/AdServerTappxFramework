@@ -15,6 +15,22 @@
 		D1AC85CA1DBA26F100088A74 /* AdServerTappxFrameworkAdMob.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85C91DBA26CF00088A74 /* AdServerTappxFrameworkAdMob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1AC85DD1DBA2AC600088A74 /* Greetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC85CC1DBA274000088A74 /* Greetings.swift */; };
 		D1AC85DE1DBA2AE200088A74 /* Greetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC85CC1DBA274000088A74 /* Greetings.swift */; };
+		D1B9A47F1DBE0D8A0083164E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */; };
+		D1B9A4801DBE0D8A0083164E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */; };
+		D1B9A4811DBE0D8A0083164E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */; };
+		D1B9A4821DBE0D8A0083164E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */; };
+		D1B9A4841DBE0E170083164E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4831DBE0E170083164E /* DataManager.swift */; };
+		D1B9A4851DBE0E170083164E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4831DBE0E170083164E /* DataManager.swift */; };
+		D1B9A4861DBE0E170083164E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4831DBE0E170083164E /* DataManager.swift */; };
+		D1B9A4871DBE0E170083164E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4831DBE0E170083164E /* DataManager.swift */; };
+		D1B9A48A1DBE6E990083164E /* Dictionary+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */; };
+		D1B9A48B1DBE6E990083164E /* Dictionary+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */; };
+		D1B9A48C1DBE6E990083164E /* Dictionary+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */; };
+		D1B9A48D1DBE6E990083164E /* Dictionary+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */; };
+		D1B9A48F1DBE6ECA0083164E /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A48E1DBE6ECA0083164E /* String+URL.swift */; };
+		D1B9A4901DBE6ECA0083164E /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A48E1DBE6ECA0083164E /* String+URL.swift */; };
+		D1B9A4911DBE6ECA0083164E /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A48E1DBE6ECA0083164E /* String+URL.swift */; };
+		D1B9A4921DBE6ECA0083164E /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B9A48E1DBE6ECA0083164E /* String+URL.swift */; };
 		D1EF1BA71DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
 		D1EF1BA81DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
 		D1EF1BA91DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */; };
@@ -52,6 +68,10 @@
 		D1AC85C41DBA245C00088A74 /* AdServerTappxFrameworkAdMobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkAdMobTests.swift; sourceTree = "<group>"; };
 		D1AC85C91DBA26CF00088A74 /* AdServerTappxFrameworkAdMob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdServerTappxFrameworkAdMob.h; sourceTree = "<group>"; };
 		D1AC85CC1DBA274000088A74 /* Greetings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Greetings.swift; sourceTree = "<group>"; };
+		D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D1B9A4831DBE0E170083164E /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+URL.swift"; sourceTree = "<group>"; };
+		D1B9A48E1DBE6ECA0083164E /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFramework.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,12 +134,14 @@
 		D1AC85911DBA236100088A74 /* AdServerTappxFramework */ = {
 			isa = PBXGroup;
 			children = (
+				D1B9A4881DBE17450083164E /* Extensions */,
 				D1AC85CB1DBA272100088A74 /* Network */,
 				D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */,
 				D1AC85C91DBA26CF00088A74 /* AdServerTappxFrameworkAdMob.h */,
 				D1AC85931DBA236100088A74 /* Info.plist */,
 				D1AC85CC1DBA274000088A74 /* Greetings.swift */,
 				D1EF1BA61DBA651D00A951F2 /* AdServerTappxFramework.swift */,
+				D1B9A4831DBE0E170083164E /* DataManager.swift */,
 			);
 			path = AdServerTappxFramework;
 			sourceTree = "<group>";
@@ -137,8 +159,18 @@
 		D1AC85CB1DBA272100088A74 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D1B9A4881DBE17450083164E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D1B9A48E1DBE6ECA0083164E /* String+URL.swift */,
+				D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,8 +353,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B9A47F1DBE0D8A0083164E /* NetworkManager.swift in Sources */,
+				D1B9A4841DBE0E170083164E /* DataManager.swift in Sources */,
+				D1B9A48F1DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BA71DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC85DD1DBA2AC600088A74 /* Greetings.swift in Sources */,
+				D1B9A48A1DBE6E990083164E /* Dictionary+URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +366,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B9A4801DBE0D8A0083164E /* NetworkManager.swift in Sources */,
+				D1B9A4851DBE0E170083164E /* DataManager.swift in Sources */,
+				D1B9A4901DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BA81DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */,
+				D1B9A48B1DBE6E990083164E /* Dictionary+URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,8 +379,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B9A4811DBE0D8A0083164E /* NetworkManager.swift in Sources */,
+				D1B9A4861DBE0E170083164E /* DataManager.swift in Sources */,
+				D1B9A4911DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BA91DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC85DE1DBA2AE200088A74 /* Greetings.swift in Sources */,
+				D1B9A48C1DBE6E990083164E /* Dictionary+URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,8 +392,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B9A4821DBE0D8A0083164E /* NetworkManager.swift in Sources */,
+				D1B9A4871DBE0E170083164E /* DataManager.swift in Sources */,
+				D1B9A4921DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BAA1DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC85C61DBA248000088A74 /* AdServerTappxFrameworkAdMobTests.swift in Sources */,
+				D1B9A48D1DBE6E990083164E /* Dictionary+URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
