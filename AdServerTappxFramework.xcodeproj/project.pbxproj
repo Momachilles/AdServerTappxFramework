@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D108053F1DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
+		D10805401DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
+		D10805411DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
+		D10805421DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
 		D1AC85991DBA236100088A74 /* AdServerTappxFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */; };
 		D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */; };
 		D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Tappx.swift"; sourceTree = "<group>"; };
 		D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdServerTappxFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdServerTappxFramework.h; sourceTree = "<group>"; };
 		D1AC85931DBA236100088A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				D1B9A47E1DBE0D8A0083164E /* NetworkManager.swift */,
+				D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D108053F1DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A47F1DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4841DBE0E170083164E /* DataManager.swift in Sources */,
 				D1B9A48F1DBE6ECA0083164E /* String+URL.swift in Sources */,
@@ -366,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10805401DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A4801DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4851DBE0E170083164E /* DataManager.swift in Sources */,
 				D1B9A4901DBE6ECA0083164E /* String+URL.swift in Sources */,
@@ -379,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10805411DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A4811DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4861DBE0E170083164E /* DataManager.swift in Sources */,
 				D1B9A4911DBE6ECA0083164E /* String+URL.swift in Sources */,
@@ -392,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10805421DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A4821DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4871DBE0E170083164E /* DataManager.swift in Sources */,
 				D1B9A4921DBE6ECA0083164E /* String+URL.swift in Sources */,

@@ -6,6 +6,7 @@
 //  Copyright © 2016 4Crew. All rights reserved.
 //
 
+import Foundation
 
 public struct TappxFrameworkConstants {
     static fileprivate let clientIdKey = "ClientIdKey"
@@ -69,11 +70,10 @@ extension AdServerTappxFramework {
 // MARK: - Adapters
 
 extension AdServerTappxFramework: TappxAdaptableContainer {
+    
     internal func removeAdapter(adapter: TappxAdabtable) throws {
-        
         guard let index = self.adapters.index(where: { $0.adapterId == adapter.adapterId }) else { throw NSError(domain: "Adapter doesn't exists", code: -10, userInfo: [:]) }
         self.adapters.remove(at: index)
-        
     }
 
     internal func addAdapter(adapter: TappxAdabtable) {

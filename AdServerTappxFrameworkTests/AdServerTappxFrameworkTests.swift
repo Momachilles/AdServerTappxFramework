@@ -21,16 +21,36 @@ class AdServerTappxFrameworkTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//    func testExample() {
+//        // This is an example of a functional test case.
+//        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//        
+//    }
+//    
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
+    
+    func testInterstitial() {
+        let testNetwork = self.expectation(description: "Test interstitial")
+        
+        
+        DataManager.testNetwork {
+            testNetwork.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 5) { handler in
+            
+        }
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testClient() {
+        let client = Greetings()
+        client.sayHello()
+        print("Adapter: \(client.adapterId)")
     }
     
 }

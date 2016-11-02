@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct NetworkManagerConstants {
+    static let kBaseURL = "http://ssp.api.tappx.com"
+}
+
 protocol ModelJSON {
     associatedtype T
     init(json: JSONDictionary<T>?) throws
@@ -45,7 +49,7 @@ enum NetworkError<S>: Error {
 
 //MARK: - Network Calls
 enum RequestType: String {
-    case RequestBanner = "requestBanner"
+    case RequestAd = "/dev/mon_v1"
 }
 
 //MARK: - Result
@@ -124,165 +128,40 @@ enum RequestPutType {
     case Path
 }
 
-//JSON Typealias
+///JSON Typealias
 typealias JSONDictionary<T> = Dictionary<String, T>
 typealias JSONArray = Array<JSONDictionary<Any>>
 
-//The default callback
-typealias ResultCallbackBlock<T> = (_ result: Result<T>) -> ()
+///The default callback
+typealias ResultCallback<T> = (_ result: Result<T>) -> ()
 
 internal class NetworkManager: NSObject {
     static var sharedInstance: NetworkManager = NetworkManager()
 
-//MARK: Base methods
-private func request(type: RequestType) ->  URLRequest? {
-    guard let url = URL(string: type.rawValue) else { return .none }
-    return URLRequest(url: url)
-}
-
-private func httpDelete( request: inout URLRequest, params: [String:String]?, type: OperationType, callback: @escaping ResultCallbackBlock<Any>) {
-    request.httpMethod = "DELETE"
-    if let params = params, let url = request.url {
-        let parameterString = params.stringFromHttpParameters()
-        let components = NSURLComponents(string: url.absoluteString)
-        components?.query = parameterString
-        request.url = components?.url ?? url
+    //MARK: Base methods
+    fileprivate func request(type: RequestType, paramString: String?) ->  URLRequest? {
+        let urlPath = NetworkManagerConstants.kBaseURL + type.rawValue + "?" + (paramString ?? "")
+        guard let url = URL(string: urlPath) else { return .none }
+        return URLRequest(url: url)
     }
-    
-    self.http(request: request, type: type) { callback($0) }
-}
 
-private func httpPut(request: inout URLRequest, params: [String:String]?, type: OperationType, putType: RequestPutType, callback: @escaping ResultCallbackBlock<Any>) {
-    request.httpMethod = "PUT"
-    if let p = params {
-        
-        switch putType {
-        case .URLEncoded:
-            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            let parameterString = p.stringFromHttpParameters()
-            request.httpBody = parameterString.data(using: String.Encoding.utf8)
-        case .JSON:
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: p, options: .prettyPrinted)
-                request.httpBody = jsonData
-            } catch {
-                callback(Result(error: NetworkError.JSONNetworkError((error as NSError).localizedDescription)))
-            }
-        case .Path:
-            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        }
-        
-        self.http(request: request, type: type, callback: callback)
-    }
-}
-
-private func httpGet(request: inout URLRequest, params: [String:String]?, type: OperationType, callback: @escaping ResultCallbackBlock<Any>) {
-    request.httpMethod = "GET"
-    if let params = params, let url = request.url {
-        let parameterString = params.stringFromHttpParameters(encoding: false)
-        let components = NSURLComponents(string: url.absoluteString)
-        components?.query = parameterString
-        request.url = components?.url ?? url
-    }
-    
-    self.http(request: request, type: type) { callback($0) }
-}
-
-private func httpPost(request: inout URLRequest, params: [String:String]?, type: OperationType, postType: RequestPostType, callback: @escaping ResultCallbackBlock<Any>) {
-    request.httpMethod = "POST"
-    if let p = params {
-        
-        switch postType {
-        case .URLEncoded:
-            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            let parameterString = p.stringFromHttpParameters()
-            request.httpBody = parameterString.data(using: String.Encoding.utf8)
-        case .JSON:
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: p, options: .prettyPrinted)
-                request.httpBody = jsonData
-            } catch {
-                callback(Result(error: NetworkError.JSONNetworkError((error as NSError).localizedDescription)))
-            }
-        case .Both:
-            
-            guard let jsonParams = p["json"] as? [String: String] else { return }
-            guard let pathParams = p["path"] as? [String: String] else { return }
-            
-            //URL encoded
-            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            let parameterString = pathParams.stringFromHttpParameters()
-            request.httpBody = parameterString.data(using: String.Encoding.utf8)
-            
-            //JSON
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: jsonParams, options: .prettyPrinted)
-                request.httpBody = jsonData
-            } catch {
-                callback(Result(error: NetworkError.JSONNetworkError((error as NSError).localizedDescription)))
-            }
-            
-            break
-        }
-        self.http(request: request, type: type) { callback($0) }
-    }
-}
-
-private func http(request: URLRequest, type: OperationType, callback: @escaping ResultCallbackBlock<Any>) -> URLSessionTask {
-    
-    switch type {
-    case .Public:
-        /*
-         if let token = self.openToken {
-         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-         }
-         */
-        break
-    case .Private: break
-        /*
-        if let token = self.sessionToken {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-        */
-    default: break
-    }
+private func http(request: URLRequest, callback: @escaping ResultCallback<Any>) -> URLSessionTask {
     
     let configuration = URLSessionConfiguration.default
     let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     let task = session.dataTask(with: request as URLRequest){ (data: Data?, response: URLResponse?, error: Error?) in
         do {
-            let invalidToken = try self.parseResponse(data: data, response: response, type: type, error: error) { callback($0) }
-            if invalidToken {
-                /*
-                self.invalidToken = true
-                self.refreshToken { result in
-                    switch result {
-                    case .Success( _):
-                        self.http(request, type: type) { callback(result: $0) }
-                    case .Unknown:
-                        callback(result: .Failure(.RefreshTokenNetworkError("Refresh token seems expired. Please login again")))
-                    case .Failure(let error):
-                        callback(result: .Failure(error))
-                        
-                    }
-                    
-                }
-                */
-            } else {
-                
-            }
+            try self.parseResponse(data: data, response: response, error: error) { callback($0) }
         } catch {
             callback(.Failure(error as! NetworkError<String>))
         }
     }
     task.resume()
+    
     return task
 }
 
-private func parseResponse(data: Data?, response: URLResponse?, type: OperationType, error: Error?, callback: ResultCallbackBlock<Any>) throws -> Bool {
+private func parseResponse(data: Data?, response: URLResponse?, error: Error?, callback: ResultCallback<Any>) throws -> Bool {
     
     if let error = error {
         let e = NetworkError.GenericNetworkError(error.localizedDescription)
@@ -293,79 +172,26 @@ private func parseResponse(data: Data?, response: URLResponse?, type: OperationT
     
     guard let data = data else { throw NetworkError.ResponseNetworkError("No data present in response") }
     guard let response = response as? HTTPURLResponse else { throw NetworkError.ResponseNetworkError("Response is missing") }
+    guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.ResponseNetworkError("No content type defined") }
 
-    //let dataString = String(data: data, encoding: String.Encoding.utf8)
-    //logger.debug("Data: \(dataString)")
+    let dataString = String(data: data, encoding: String.Encoding.utf8)
+    print("Data: \(dataString)")
     
     switch response.statusCode {
         
-    case 200: //Ok
+    case 200 where content == "html": //Ok and it's html
         
         do {
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            callback(.Success(json))
+            callback(.Success(dataString))
         } catch {
             callback(.Success("")) // Empty response data
         }
         
-    case 401...403: break // Invalid Token
-        
-        /*
-        if self.invalidToken {
-            callback(result: .Failure(.RefreshTokenNetworkError("Refresh token seems expired. Please login again")))
-            return false
-        } else {
-            return true
-        }
-        */
-        /*
-         if self.refreshTokenIsBeingChecked {
-         self.refreshTokenIsBeingChecked = false
-         self.refreshToken { result in
-         switch result {
-         case .Success:
-         self.refreshTokenIsBeingChecked = true
-         callback(result: .Success(""))
-         case .Failure( _):
-         fallthrough
-         case .Unknown:
-         callback(result: .Failure(.RefreshTokenNetworkError("Refresh token seems expired. Please login again")))
-         }
-         }
-         return true
-         } else {
-         callback(result: .Failure(.RefreshTokenNetworkError("Refresh token seems expired. Please login again")))
-         return false
-         }
-         */
-        
-    case 400 where type == .Session: break
-        
-        /*
-        if self.invalidToken {
-            callback(result: .Failure(.RefreshTokenNetworkError("Refresh token seems expired. Please login again")))
-            return false
-        } else {
-            return true
-        }
-        */
-        
+    case 200 where content == "no_fill": // OK and no fill
+        print("No fill")
+        callback(.Success(""))
     default: // Error
-        
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            if let message = self.parseErrorFromJSON(json: json as? [String : String]) {
-                //callback(result: .Failure(NetworkError.ResponseNetworkError("Code: \(response.statusCode). \(message)")))
-                callback(.Failure(NetworkError.ResponseNetworkError("\(message)")))
-            } else {
-                callback(.Failure(NetworkError.GenericNetworkError("Error in parseResponse")))
-            }
-        } catch let error {
-            callback(.Failure(NetworkError.GenericNetworkError((error as NSError).localizedDescription)))
-        } /*catch {
-         callback(result: .Failure(NetworkError.GenericNetworkError("Error in parseResponse")))
-         logger.error("Error in parseResponse")
-         }*/
+        callback(.Failure(NetworkError.GenericNetworkError("Error in parseResponse: \(response.statusCode)")))
     }
     
     
@@ -373,18 +199,41 @@ private func parseResponse(data: Data?, response: URLResponse?, type: OperationT
     return false
 }
 
-private func parseErrorFromJSON(json: [String: String]?) -> String? {
-    
-    //let errorType = json?["error"] ?? json?["code"] ?? .none
-    let message = json?["error_description"] ?? json?["message"] ?? .none
-    
-    //guard let error = errorType, let msg = message else { return .none }
-    guard let msg = message else { return .none }
-    //return "Error: \(error). Description: \(msg)"
-    return msg
-}
+    fileprivate func httpPost(request: inout URLRequest, callback: @escaping ResultCallback<Any>) {
+        request.httpMethod = "POST"
+        
+        //JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36", forHTTPHeaderField: "User-Agent")
+        do {
+            //let jsonData = try JSONSerialization.data(withJSONObject: jsonParams, options: .prettyPrinted)
+            //request.httpBody = jsonData
+            request.httpBody = try TappxBodyParameters().json()
+            self.http(request: request) { callback($0) }
+            
+        } catch {
+            callback(Result(error: NetworkError.JSONNetworkError((error as NSError).localizedDescription)))
+        }
 
+        
+    }
+    
 }
 
 //MARK: - NSURLSessionDelegate methods
 extension NetworkManager: URLSessionDelegate {}
+
+
+//MARK: - Banner
+extension NetworkManager {
+    
+    func interstitial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<Any>) {
+        
+        guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
+            callback(.Unknown)
+            return
+        }
+        self.httpPost(request: &request) { callback($0) }
+
+    }
+}
