@@ -20,7 +20,7 @@ internal class DataManager: NSObject {
         
         let json = TappxBodyParameters()
         
-        NetworkManager.sharedInstance.interstitial(tappxQueryStringParameters: params, tappxBodyParameters: json) { result in
+        NetworkManager.sharedInstance.interstittial(tappxQueryStringParameters: params, tappxBodyParameters: json) { result in
             
             callback()
         }

@@ -190,6 +190,7 @@ private func parseResponse(data: Data?, response: URLResponse?, error: Error?, c
     case 200 where content == "no_fill": // OK and no fill
         print("No fill")
         callback(.Success(""))
+        
     default: // Error
         callback(.Failure(NetworkError.GenericNetworkError("Error in parseResponse: \(response.statusCode)")))
     }
@@ -227,7 +228,7 @@ extension NetworkManager: URLSessionDelegate {}
 //MARK: - Banner
 extension NetworkManager {
     
-    func interstitial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<Any>) {
+    func interstittial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<Any>) {
         
         guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
             callback(.Unknown)
@@ -236,4 +237,6 @@ extension NetworkManager {
         self.httpPost(request: &request) { callback($0) }
 
     }
+    
+    
 }
