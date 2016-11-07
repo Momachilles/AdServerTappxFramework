@@ -34,6 +34,21 @@ class AdServerTappxFrameworkTests: XCTestCase {
 //        }
 //    }
     
+    func testInitFramework() {
+        let grettings = Greetings()
+        grettings.initialize()
+        
+        guard let age = AdServerTappxFramework.sharedInstance.settings?.age else {
+            XCTFail("Not Age set")
+            return
+        }
+        
+        XCTAssertNotEqual("44", age, "Age is different")
+        
+        
+    }
+    
+    
     func testInterstitial() {
         let testNetwork = self.expectation(description: "Test interstitial")
         

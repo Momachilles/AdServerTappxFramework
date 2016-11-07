@@ -25,6 +25,7 @@
 		D10805401DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
 		D10805411DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
 		D10805421DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
+		D126C6A01DCF970600EC3F97 /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
 		D1AC85991DBA236100088A74 /* AdServerTappxFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */; };
 		D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */; };
 		D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Tappx.swift"; sourceTree = "<group>"; };
+		D126C69F1DCF970600EC3F97 /* Associated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Associated.swift; sourceTree = "<group>"; };
 		D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdServerTappxFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdServerTappxFramework.h; sourceTree = "<group>"; };
 		D1AC85931DBA236100088A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				D1B9A48E1DBE6ECA0083164E /* String+URL.swift */,
 				D1B9A4891DBE6E990083164E /* Dictionary+URL.swift */,
+				D126C69F1DCF970600EC3F97 /* Associated.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				D108053F1DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A47F1DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4841DBE0E170083164E /* DataManager.swift in Sources */,
+				D126C6A01DCF970600EC3F97 /* Associated.swift in Sources */,
 				D1B9A48F1DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BA71DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC85DD1DBA2AC600088A74 /* Greetings.swift in Sources */,
@@ -724,6 +728,7 @@
 				D172A96C1DCCF93300E352E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1AC85891DBA236100088A74 /* Build configuration list for PBXProject "AdServerTappxFramework" */ = {
 			isa = XCConfigurationList;

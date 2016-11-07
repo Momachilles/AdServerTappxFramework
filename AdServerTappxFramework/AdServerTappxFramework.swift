@@ -11,9 +11,11 @@ import Foundation
 public struct TappxFrameworkConstants {
     static fileprivate let clientIdKey = "ClientIdKey"
     static fileprivate var tappxAssociationKey: UInt8 = 0
+    static fileprivate var tappxSettingsAssociationKey = "TappxSettings"
 }
 
 
+// MARK: - Adapter Protocols
 public protocol TappxAdabtable {
     var adapterId: String { get set }
     func doSomething()
@@ -44,6 +46,36 @@ public class AdServerTappxFramework: NSObject {
     
 }
 
+// MARK: - Settings Protocol
+
+enum Gender: String {
+    case Male = "male"
+    case Female = "female"
+    case Other = "Other"
+}
+
+enum Marital: String {
+    case Single = "Single"
+    case LivingCommon = "Living Common"
+    case Married = "Married"
+    case Divorced = "Divorced"
+    case Widowed = "Widowed"
+}
+
+struct TappxSettings {
+    //var sdkType: String?
+    //var mediator: String?
+    //var keywords: [String]?
+    //var yearOfBirth: String?
+    var age: String?
+    //var gender: Gender?
+    //var marital: Marital?
+}
+
+private protocol TappxSettingable {
+    var settings: TappxSettings? { get set }
+}
+
 // MARK: - Client
 extension AdServerTappxFramework {
     
@@ -68,7 +100,6 @@ extension AdServerTappxFramework {
 }
 
 // MARK: - Adapters
-
 extension AdServerTappxFramework: TappxAdaptableContainer {
     
     internal func removeAdapter(adapter: TappxAdabtable) throws {
@@ -90,6 +121,17 @@ extension AdServerTappxFramework: TappxAdaptableContainer {
         set { objc_setAssociatedObject(self, &TappxFrameworkConstants.tappxAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
     
-    
-    
 }
+
+extension AdServerTappxFramework: TappxSettingable  {
+    var settings: TappxSettings? {
+        get {
+            //return (objc_getAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey) as! Associated<TappxSettings>).map {$0.value}
+            return (objc_getAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey) as? Associated<TappxSettings>).map {$0.value}
+        }
+        
+        set { objc_setAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
+    }
+}
+
+
