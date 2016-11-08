@@ -8,10 +8,10 @@
 
 import Foundation
 
-public struct TappxFrameworkConstants {
-    static fileprivate let clientIdKey = "ClientIdKey"
-    static fileprivate var tappxAssociationKey: UInt8 = 0
-    static fileprivate var tappxSettingsAssociationKey = "TappxSettings"
+struct TappxFrameworkConstants {
+    static let clientIdKey = "ClientIdKey"
+    static var tappxAssociationKey: UInt8 = 0
+    static var tappxSettingsAssociationKey = "TappxSettings"
 }
 
 
@@ -62,18 +62,18 @@ enum Marital: String {
     case Widowed = "Widowed"
 }
 
-struct TappxSettings {
-    //var sdkType: String?
-    //var mediator: String?
-    //var keywords: [String]?
-    //var yearOfBirth: String?
+struct Settings {
+    var sdkType: String?
+    var mediator: String?
+    var keywords: [String]?
+    var yearOfBirth: String?
     var age: String?
-    //var gender: Gender?
-    //var marital: Marital?
+    var gender: Gender?
+    var marital: Marital?
 }
 
-private protocol TappxSettingable {
-    var settings: TappxSettings? { get set }
+protocol TappxSettings {
+    var settings: Settings? { get set }
 }
 
 // MARK: - Client
@@ -123,14 +123,11 @@ extension AdServerTappxFramework: TappxAdaptableContainer {
     
 }
 
-extension AdServerTappxFramework: TappxSettingable  {
-    var settings: TappxSettings? {
-        get {
-            //return (objc_getAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey) as! Associated<TappxSettings>).map {$0.value}
-            return (objc_getAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey) as? Associated<TappxSettings>).map {$0.value}
-        }
-        
-        set { objc_setAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
+extension AdServerTappxFramework: TappxSettings  {
+    
+    var settings: Settings? {
+        get { return (objc_getAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey) as? Associated<Settings>)?.associatedValue() }
+        set { objc_setAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey, newValue.map { Associated<Settings>($0) }, .OBJC_ASSOCIATION_RETAIN) }
     }
 }
 

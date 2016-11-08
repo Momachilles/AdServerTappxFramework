@@ -26,6 +26,9 @@
 		D10805411DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
 		D10805421DC2088100E5922B /* URLRequest+Tappx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */; };
 		D126C6A01DCF970600EC3F97 /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
+		D133A5741DD1EF5A0086609F /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
+		D133A5751DD1EF5A0086609F /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
+		D133A5761DD1EF5B0086609F /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
 		D1AC85991DBA236100088A74 /* AdServerTappxFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1AC858F1DBA236100088A74 /* AdServerTappxFramework.framework */; };
 		D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC859D1DBA236100088A74 /* AdServerTappxFrameworkTests.swift */; };
 		D1AC85A01DBA236100088A74 /* AdServerTappxFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D1AC85921DBA236100088A74 /* AdServerTappxFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -416,6 +419,7 @@
 				D10805401DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A4801DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4851DBE0E170083164E /* DataManager.swift in Sources */,
+				D133A5741DD1EF5A0086609F /* Associated.swift in Sources */,
 				D1B9A4901DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BA81DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC859E1DBA236100088A74 /* AdServerTappxFrameworkTests.swift in Sources */,
@@ -430,6 +434,7 @@
 				D10805411DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A4811DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4861DBE0E170083164E /* DataManager.swift in Sources */,
+				D133A5751DD1EF5A0086609F /* Associated.swift in Sources */,
 				D1B9A4911DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BA91DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC85DE1DBA2AE200088A74 /* Greetings.swift in Sources */,
@@ -444,6 +449,7 @@
 				D10805421DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A4821DBE0D8A0083164E /* NetworkManager.swift in Sources */,
 				D1B9A4871DBE0E170083164E /* DataManager.swift in Sources */,
+				D133A5761DD1EF5B0086609F /* Associated.swift in Sources */,
 				D1B9A4921DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D1EF1BAA1DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,
 				D1AC85C61DBA248000088A74 /* AdServerTappxFrameworkAdMobTests.swift in Sources */,

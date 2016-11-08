@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal final class Associated<T>: NSObject, NSCopying {
+public final class Associated<T>: NSObject, NSCopying {
     public typealias `Type` = T
     public let value: Type
     
@@ -17,10 +17,14 @@ internal final class Associated<T>: NSObject, NSCopying {
     public func copy(with zone: NSZone?) -> Any {
         return type(of: self).init(value)
     }
+    
+    public func associatedValue() -> T {
+        return value
+    }
 }
 
-internal extension Associated where T: NSCopying {
-    internal func copy(with zone: NSZone) -> AnyObject {
+extension Associated where T: NSCopying {
+    public func copy(with zone: NSZone) -> AnyObject {
         return type(of: self).init(value.copy(with: zone) as! Type)
     }
 }

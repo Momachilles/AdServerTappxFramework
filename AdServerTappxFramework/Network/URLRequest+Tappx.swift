@@ -8,11 +8,22 @@
 
 import Foundation
 
+protocol TappxRequest {
+    var tappxQueryStringParameters: TappxQueryStringParameters? { get set }
+    var tappxBodyParameters: TappxBodyParameters? { get set }
+    var tappxHeaders: TappxHeaders? { get set }
+}
+
+struct RequestConstants {
+    static var tappxQueryStringParametersAssociationKey = "TappxQueryStringParameters"
+    static var tappxBodyParametersAssociationKey = "TappxBodyParameters"
+    static var tappxHeadersAssociationKey = "TappxHeaders"
+}
+
 enum QueryAdType: String {
     case banner = "banner"
     case intersticial = "interstitial"
 }
-
 
 
 
@@ -257,27 +268,20 @@ struct TappxHeaders {
     
 }
 
-//protocol TappxRequestable {
-//    var tappxQueryStringParameters: TappxQueryStringParameters { get set }
-//    var tappxBodyParameters: TappxBodyParameters { get set }
-//}
-//
-//
-//extension URLRequest: TappxRequestable {
-//    
-//    private struct AssociatedKeys {
-//        static var tappxQueryStringParametersAssociationKey = "TappxQueryStringParameters"
-//        static var tappxBodyParametersAssociationKey = "TappxBodyParameters"
-//    }
-//    
-//    var tappxQueryStringParameters: TappxQueryStringParameters {
-//        get { return objc_getAssociatedObject(self, &AssociatedKeys.tappxQueryStringParametersAssociationKey) as! TappxQueryStringParameters }
-//        set { objc_setAssociatedObject(self, &AssociatedKeys.tappxQueryStringParametersAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
-//    }
-//    
-//    var tappxBodyParameters: TappxBodyParameters {
-//        get { return objc_getAssociatedObject(self, &AssociatedKeys.tappxBodyParametersAssociationKey) as! TappxBodyParameters }
-//        set { objc_setAssociatedObject(self, &AssociatedKeys.tappxBodyParametersAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
-//    }
-//
-//}
+extension URLRequest: TappxRequest {
+    
+    var tappxQueryStringParameters: TappxQueryStringParameters? {
+        get { return (objc_getAssociatedObject(self, &RequestConstants.tappxQueryStringParametersAssociationKey) as? Associated<TappxQueryStringParameters>)?.associatedValue() }
+        set { objc_setAssociatedObject(self, &RequestConstants.tappxQueryStringParametersAssociationKey, newValue.map { Associated<TappxQueryStringParameters>($0) }, .OBJC_ASSOCIATION_RETAIN) }
+    }
+    
+    var tappxBodyParameters: TappxBodyParameters? {
+        get { return (objc_getAssociatedObject(self, &RequestConstants.tappxBodyParametersAssociationKey) as? Associated<TappxBodyParameters>)?.associatedValue() }
+        set { objc_setAssociatedObject(self, &RequestConstants.tappxBodyParametersAssociationKey, newValue.map { Associated<TappxBodyParameters>($0) }, .OBJC_ASSOCIATION_RETAIN) }
+    }
+    
+    var tappxHeaders: TappxHeaders? {
+        get { return (objc_getAssociatedObject(self, &RequestConstants.tappxHeadersAssociationKey) as? Associated<TappxHeaders>)?.associatedValue() }
+        set { objc_setAssociatedObject(self, &RequestConstants.tappxHeadersAssociationKey, newValue.map { Associated<TappxHeaders>($0) }, .OBJC_ASSOCIATION_RETAIN) }
+    }
+}
