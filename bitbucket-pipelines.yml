@@ -16,4 +16,3 @@ pipelines:
               //trivial, yes - but it works
               sh 'swift --version'
             }
-}
