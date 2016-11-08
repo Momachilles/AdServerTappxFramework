@@ -13,3 +13,4 @@ pipelines:
         script:
           - echo "Everything is awesome!"
           - swift --version
+          - xcodebuild -usage
