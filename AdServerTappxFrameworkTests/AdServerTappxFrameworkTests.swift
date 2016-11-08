@@ -49,6 +49,13 @@ class AdServerTappxFrameworkTests: XCTestCase {
         
         XCTAssertEqual("44", age, "Age is different")
         
+        let body = TappxBodyParameters()
+        
+        do { let p = try body.json()
+        } catch {
+            
+        }
+        
         
     }
     

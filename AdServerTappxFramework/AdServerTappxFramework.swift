@@ -49,17 +49,30 @@ public class AdServerTappxFramework: NSObject {
 // MARK: - Settings Protocol
 
 enum Gender: String {
-    case Male = "male"
+    case Male   = "male"
     case Female = "female"
-    case Other = "Other"
+    case Other  = "Other"
 }
 
 enum Marital: String {
-    case Single = "Single"
-    case LivingCommon = "Living Common"
-    case Married = "Married"
-    case Divorced = "Divorced"
-    case Widowed = "Widowed"
+    case Single         = "Single"
+    case LivingCommon   = "Living Common"
+    case Married        = "Married"
+    case Divorced       = "Divorced"
+    case Widowed        = "Widowed"
+}
+
+enum BannerForcedSize: String {
+    case x320y50    = "320x50"
+    case x728y90    = "728x90"
+    case x300y250   = "300x250"
+}
+
+enum InterstitialForcedSize: String {
+    case x320y480   = "320x480"
+    case x480y320   = "480x320"
+    case x768y1024  = "768x1024"
+    case x1024y768  = "1024x768"
 }
 
 struct Settings {

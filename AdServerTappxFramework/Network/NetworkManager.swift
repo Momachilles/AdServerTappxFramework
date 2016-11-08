@@ -147,6 +147,7 @@ internal class NetworkManager: NSObject {
 
 private func http(request: URLRequest, callback: @escaping ResultCallback<Any>) -> URLSessionTask {
     
+    print("Bytes sent: \(request.httpBody?.count)")
     let configuration = URLSessionConfiguration.default
     let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
     let task = session.dataTask(with: request as URLRequest){ (data: Data?, response: URLResponse?, error: Error?) in
@@ -175,7 +176,7 @@ private func parseResponse(data: Data?, response: URLResponse?, error: Error?, c
     guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.ResponseNetworkError("No content type defined") }
 
     let dataString = String(data: data, encoding: String.Encoding.utf8)
-    print("Data: \(dataString)")
+    print("Data (\(data.count) bytes): \(dataString)")
     
     switch response.statusCode {
         

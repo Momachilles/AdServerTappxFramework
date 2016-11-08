@@ -58,41 +58,41 @@ struct TappxQueryStringParameters {
 }
 
 struct TappxBodyParameters {
-    let params: [String: Any] = [
-        "okw": "1",
-        "sdkv": "3.0.0",
-        "sdkt": "native",
-        "gpscv": 9452030,
-        "gpslv": 8301430,
-        "mraid": 2.0,
-        "aid": "96bd03b6-defc-4203-83d3-dc1c730801f7",
-        "aida": "acc106e89b01a1ef12bd870089e0ed9d",
-        "dmn": "Samsung",
-        "dmo": "GT-i9300",
-        "dmp": "Galaxy S3",
-        "dos": "android",
-        "dov": "6.0.1",
-        "dsw": 1080,
-        "dsh": 1920,
-        "dsd": 3.0,
-        "dua": "Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36",
-        "dln": "es-ES",
-        "dct": "wifi",
-        "soc": 21407,
-        "son": "Movistar",
-        "scc": "ES",
-        "noc": 21407,
-        "non": "Movistar",
-        "ncc": "ES",
-        "aln": "en-US",
-        "ab": "com.tappx.apptest",
-        "an": "AppTest for Tappx",
-        "gz": "+0000"
-    ]
+//    let params: [String: Any] = [
+//        "okw": "1",
+//        "sdkv": "3.0.0",
+//        "sdkt": "native",
+//        "gpscv": 9452030,
+//        "gpslv": 8301430,
+//        "mraid": 2.0,
+//        "aid": "96bd03b6-defc-4203-83d3-dc1c730801f7",
+//        "aida": "acc106e89b01a1ef12bd870089e0ed9d",
+//        "dmn": "Samsung",
+//        "dmo": "GT-i9300",
+//        "dmp": "Galaxy S3",
+//        "dos": "android",
+//        "dov": "6.0.1",
+//        "dsw": 1080,
+//        "dsh": 1920,
+//        "dsd": 3.0,
+//        "dua": "Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36",
+//        "dln": "es-ES",
+//        "dct": "wifi",
+//        "soc": 21407,
+//        "son": "Movistar",
+//        "scc": "ES",
+//        "noc": 21407,
+//        "non": "Movistar",
+//        "ncc": "ES",
+//        "aln": "en-US",
+//        "ab": "com.tappx.apptest",
+//        "an": "AppTest for Tappx",
+//        "gz": "+0000"
+//    ]
     
     ///Optional KeyWords from developer/user. Requires a function to set this values (string comma separated per each key)
     ///Default: (empty)
-    var okw = 1
+    var okw = 2
     
     ///SDK Version
     var sdkv = "3.0.0"
@@ -211,8 +211,20 @@ struct TappxBodyParameters {
     ///Default: (empty)
     var omarital = ""
     
+    private func parameters() -> [String: Any] {
+        var parameters: [String: Any] = [:]
+        let mirror = Mirror(reflecting: self)
+        for child in mirror.children {
+            if let label = child.label {
+                parameters[label] = child.value
+            }
+        }
+        return parameters
+    }
+    
     func json() throws -> Data {
-        return try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions.prettyPrinted)
+        let p = self.parameters()
+        return try JSONSerialization.data(withJSONObject: p, options: JSONSerialization.WritingOptions.prettyPrinted)
     }
     
 }

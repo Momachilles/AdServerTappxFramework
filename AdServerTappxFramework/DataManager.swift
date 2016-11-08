@@ -30,6 +30,7 @@ internal class DataManager: NSObject {
     
     internal static func tappxBanner() {
         
+        
     }
     
     
