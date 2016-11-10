@@ -9,7 +9,11 @@
 import Foundation
 
 struct NetworkManagerConstants {
-    static let kBaseURL = "http://ssp.api.tappx.com"
+    private static let kProtocol = "http"
+    private static let kHostname = "ssp.api.tappx.com"
+    static let kBaseURL: String {
+       return kProtocol + "://" + kHostname
+    }
 }
 
 protocol ModelJSON {
@@ -65,6 +69,15 @@ enum Result<T> {
             self = .Success(v)
         } else {
             self = .Unknown
+        }
+    }
+    
+    func value() -> T? {
+        switch self {
+        case .Success(let t):
+            return t
+        case .Failure:
+            return .none
         }
     }
 }
@@ -237,6 +250,29 @@ extension NetworkManager {
         }
         self.httpPost(request: &request) { callback($0) }
 
+    }
+    
+    func banner(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) {
+        
+        guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
+            callback(.Unknown)
+            return
+        }
+        self.httpPost(request: &request) { data in
+            
+            //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
+            
+            let result: Result<String> = data.flatMap { t in
+                if let t = t as? String {
+                    return .Success(t)
+                } else {
+                    return .Failure(NetworkError.GenericNetworkError("Data is not a string"))
+                }
+            }
+            
+            callback(result)
+        }
+        
     }
     
     

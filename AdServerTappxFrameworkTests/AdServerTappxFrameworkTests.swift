@@ -79,4 +79,10 @@ class AdServerTappxFrameworkTests: XCTestCase {
         print("Adapter: \(client.adapterId)")
     }
     
+    func testBanner {
+        let testNetwork = self.expectation(description: "Test banner")
+        
+        
+    }
+    
 }

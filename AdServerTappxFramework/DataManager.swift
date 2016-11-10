@@ -28,7 +28,18 @@ internal class DataManager: NSObject {
         
     }
     
-    internal static func tappxBanner() {
+    internal static func tappxBanner(withSize forcedSize: BannerForcedSize? = .none, callback: @escaping (Result<String>) -> ()) {
+        
+        var params = TappxQueryStringParameters()
+        
+        forcedSize.map { params.fsz = $0.rawValue }
+        params.at = .banner
+        
+        #if DEBUG
+            params.test = 1
+        #else
+            params.test = 0
+        #endif
         
         
     }
