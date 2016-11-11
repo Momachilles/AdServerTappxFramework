@@ -10,24 +10,6 @@ import UIKit
 
 internal class DataManager: NSObject {
     
-    internal static func testNetwork(callback: @escaping () -> ()) {
-        
-        var params = TappxQueryStringParameters()
-        
-        params.fsz = "300x250"
-        params.at = .intersticial
-        params.test = 1
-        
-        let json = TappxBodyParameters()
-        
-        NetworkManager.sharedInstance.interstittial(tappxQueryStringParameters: params, tappxBodyParameters: json) { result in
-            
-            callback()
-        }
-        
-        
-    }
-    
     internal static func tappxBanner(withSize forcedSize: BannerForcedSize? = .none, callback: @escaping (Result<String>) -> ()) {
         
         var params = TappxQueryStringParameters()
@@ -41,6 +23,32 @@ internal class DataManager: NSObject {
             params.test = 0
         #endif
         
+        let json = TappxBodyParameters()
+        
+        NetworkManager.sharedInstance.banner(tappxQueryStringParameters: params, tappxBodyParameters: json) {
+            callback($0)
+        }
+        
+    }
+    
+    internal static func tappxInterstitial(withSize forcedSize: InterstitialForcedSize? = .none, callback: @escaping (Result<String>) -> ()) {
+        
+        var params = TappxQueryStringParameters()
+        
+        forcedSize.map { params.fsz = $0.rawValue }
+        params.at = .interstitial
+        
+        #if DEBUG
+            params.test = 1
+        #else
+            params.test = 0
+        #endif
+        
+        let json = TappxBodyParameters()
+        
+        NetworkManager.sharedInstance.interstitial(tappxQueryStringParameters: params, tappxBodyParameters: json) {
+            callback($0)
+        }
         
     }
     

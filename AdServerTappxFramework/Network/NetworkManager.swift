@@ -11,7 +11,7 @@ import Foundation
 struct NetworkManagerConstants {
     private static let kProtocol = "http"
     private static let kHostname = "ssp.api.tappx.com"
-    static let kBaseURL: String {
+    static var kBaseURL: String {
        return kProtocol + "://" + kHostname
     }
 }
@@ -77,6 +77,8 @@ enum Result<T> {
         case .Success(let t):
             return t
         case .Failure:
+            return .none
+        case .Unknown:
             return .none
         }
     }
@@ -175,31 +177,33 @@ private func http(request: URLRequest, callback: @escaping ResultCallback<Any>) 
     return task
 }
 
-private func parseResponse(data: Data?, response: URLResponse?, error: Error?, callback: ResultCallback<Any>) throws -> Bool {
+private func parseResponse(data responseData: Data?, response: URLResponse?, error: Error?, callback: ResultCallback<Any>) throws -> () {
     
     if let error = error {
         let e = NetworkError.GenericNetworkError(error.localizedDescription)
         let r = Result<Any>(error: e)
         callback(r)
-        return false
     }
     
-    guard let data = data else { throw NetworkError.ResponseNetworkError("No data present in response") }
-    guard let response = response as? HTTPURLResponse else { throw NetworkError.ResponseNetworkError("Response is missing") }
+    guard let data = responseData else {
+        callback(.Failure(NetworkError.ResponseNetworkError("No data present in response")))
+        return
+    }
+    
+    guard let response = response as? HTTPURLResponse else {
+        callback(.Failure(NetworkError.ResponseNetworkError("Response is missing")))
+        return
+    }
+    
     guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.ResponseNetworkError("No content type defined") }
-
-    let dataString = String(data: data, encoding: String.Encoding.utf8)
-    print("Data (\(data.count) bytes): \(dataString)")
     
     switch response.statusCode {
         
     case 200 where content == "html": //Ok and it's html
         
-        do {
-            callback(.Success(dataString))
-        } catch {
-            callback(.Success("")) // Empty response data
-        }
+        let dataString = String(data: data, encoding: String.Encoding.utf8)
+        print("Data (\(data.count) bytes): \(dataString)")
+        callback(.Success(dataString ?? ""))
         
     case 200 where content == "no_fill": // OK and no fill
         print("No fill")
@@ -208,13 +212,10 @@ private func parseResponse(data: Data?, response: URLResponse?, error: Error?, c
     default: // Error
         callback(.Failure(NetworkError.GenericNetworkError("Error in parseResponse: \(response.statusCode)")))
     }
-    
-    
-    
-    return false
+
 }
 
-    fileprivate func httpPost(request: inout URLRequest, callback: @escaping ResultCallback<Any>) {
+    fileprivate func httpPost(request: inout URLRequest, bodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<Any>) {
         request.httpMethod = "POST"
         
         //JSON
@@ -223,8 +224,10 @@ private func parseResponse(data: Data?, response: URLResponse?, error: Error?, c
         do {
             //let jsonData = try JSONSerialization.data(withJSONObject: jsonParams, options: .prettyPrinted)
             //request.httpBody = jsonData
-            request.httpBody = try TappxBodyParameters().json()
-            self.http(request: request) { callback($0) }
+            request.httpBody = try bodyParameters.json()
+            self.http(request: request) {
+                callback($0)
+            }
             
         } catch {
             callback(Result(error: NetworkError.JSONNetworkError((error as NSError).localizedDescription)))
@@ -242,13 +245,26 @@ extension NetworkManager: URLSessionDelegate {}
 //MARK: - Banner
 extension NetworkManager {
     
-    func interstittial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<Any>) {
+    func interstitial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) {
         
         guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
             callback(.Unknown)
             return
         }
-        self.httpPost(request: &request) { callback($0) }
+        self.httpPost(request: &request, bodyParameters: tappxBodyParameters) { data in
+            
+            //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
+            
+            let result: Result<String> = data.flatMap { t in
+                if let t = t as? String {
+                    return .Success(t)
+                } else {
+                    return .Failure(NetworkError.GenericNetworkError("Data is not a string"))
+                }
+            }
+            
+            callback(result)
+        }
 
     }
     
@@ -258,7 +274,7 @@ extension NetworkManager {
             callback(.Unknown)
             return
         }
-        self.httpPost(request: &request) { data in
+        self.httpPost(request: &request, bodyParameters: tappxBodyParameters) { data in
             
             //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
             

@@ -22,7 +22,7 @@ struct RequestConstants {
 
 enum QueryAdType: String {
     case banner = "banner"
-    case intersticial = "interstitial"
+    case interstitial = "interstitial"
 }
 
 
@@ -92,7 +92,15 @@ struct TappxBodyParameters {
     
     ///Optional KeyWords from developer/user. Requires a function to set this values (string comma separated per each key)
     ///Default: (empty)
-    var okw = 2
+    var okw: String {
+        guard
+            let settings = AdServerTappxFramework.sharedInstance.settings,
+            let kws = settings.keywords
+        else { return "" }
+        return kws.joined(separator: ",")
+    }
+    
+    //var okw = "1"
     
     ///SDK Version
     var sdkv = "3.0.0"
@@ -219,6 +227,10 @@ struct TappxBodyParameters {
                 parameters[label] = child.value
             }
         }
+        
+        //Mirror not working with stored properties
+        parameters["okw"] = self.okw
+        
         return parameters
     }
     
