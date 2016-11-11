@@ -23,29 +23,20 @@ protocol ModelJSON {
 
 //MARK: - NetworkError
 enum NetworkError<S>: Error {
-    case ResponseNetworkError(S)
-    case TokenNetworkError(S)
-    case RefreshTokenNetworkError(S)
-    case GenericNetworkError(S)
-    case NoNetworkNetworkError(S)
-    case JSONNetworkError(S)
-    case UnkownResultNetworkError(S)
+    case httpResponseNetworkError(S, Int)
+    case genericNetworkError(S)
+    case noNetworkNetworkError(S)
+    case jsonNetworkError(S)
     
     func message() -> S {
         switch self {
-        case .ResponseNetworkError(let s):
+        case .httpResponseNetworkError(let s, _):
             return s
-        case .TokenNetworkError(let s):
+        case .genericNetworkError(let s):
             return s
-        case .GenericNetworkError(let s):
+        case .noNetworkNetworkError(let s):
             return s
-        case .NoNetworkNetworkError(let s):
-            return s
-        case .JSONNetworkError(let s):
-            return s
-        case .UnkownResultNetworkError(let s):
-            return s
-        case .RefreshTokenNetworkError(let s):
+        case .jsonNetworkError(let s):
             return s
         }
     }
@@ -55,6 +46,38 @@ enum NetworkError<S>: Error {
 enum RequestType: String {
     case RequestAd = "/dev/mon_v1"
 }
+
+//MARK: - TappxResult
+class TappxResult<T>: NSObject {
+    let value: T
+    let headers: TappxHeaders
+    
+    init(_ value: T, headers: TappxHeaders) {
+        self.value = value
+        self.headers = headers
+    }
+    
+    func map<U>(_ f: (T) throws -> U) rethrows -> TappxResult<U> {
+        return TappxResult<U>(try f(self.value), headers: self.headers)
+    }
+    
+    func flatMap<U>(_ f: (T) throws -> TappxResult<U>) rethrows -> TappxResult<U> {
+        return try f(self.value)
+    }
+    
+}
+
+infix operator >>  : MultiplicationPrecedence
+infix operator >>> : MultiplicationPrecedence
+
+func >><T, U>(left: TappxResult<T>, right: (T) throws -> U) rethrows -> TappxResult<U> {
+    return try left.map(right)
+}
+
+func >>><T, U>(left: TappxResult<T>, right: (T) throws -> TappxResult<U>) rethrows -> TappxResult<U> {
+    return try left.flatMap(right)
+}
+
 
 //MARK: - Result
 enum Result<T> {
@@ -120,7 +143,7 @@ extension Result {
             let value = try throwingExpr()
             self = Result.Success(value)
         } catch (let error as NSError) {
-            self = Result.Failure(.GenericNetworkError(error.localizedDescription))
+            self = Result.Failure(.genericNetworkError(error.localizedDescription))
         }
     }
 }
@@ -180,22 +203,22 @@ private func http(request: URLRequest, callback: @escaping ResultCallback<Any>) 
 private func parseResponse(data responseData: Data?, response: URLResponse?, error: Error?, callback: ResultCallback<Any>) throws -> () {
     
     if let error = error {
-        let e = NetworkError.GenericNetworkError(error.localizedDescription)
+        let e = NetworkError.genericNetworkError(error.localizedDescription)
         let r = Result<Any>(error: e)
         callback(r)
     }
     
-    guard let data = responseData else {
-        callback(.Failure(NetworkError.ResponseNetworkError("No data present in response")))
-        return
-    }
-    
     guard let response = response as? HTTPURLResponse else {
-        callback(.Failure(NetworkError.ResponseNetworkError("Response is missing")))
+        callback(.Failure(NetworkError.httpResponseNetworkError("Response is missing", 0)))
         return
     }
     
-    guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.ResponseNetworkError("No content type defined") }
+    guard let data = responseData else {
+        callback(.Failure(NetworkError.httpResponseNetworkError("No data present in response", response.statusCode)))
+        return
+    }
+    
+    guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.genericNetworkError("No content type defined") }
     
     switch response.statusCode {
         
@@ -210,7 +233,7 @@ private func parseResponse(data responseData: Data?, response: URLResponse?, err
         callback(.Success(""))
         
     default: // Error
-        callback(.Failure(NetworkError.GenericNetworkError("Error in parseResponse: \(response.statusCode)")))
+        callback(.Failure(NetworkError.genericNetworkError("Error in parseResponse: \(response.statusCode)")))
     }
 
 }
@@ -230,7 +253,7 @@ private func parseResponse(data responseData: Data?, response: URLResponse?, err
             }
             
         } catch {
-            callback(Result(error: NetworkError.JSONNetworkError((error as NSError).localizedDescription)))
+            callback(Result(error: NetworkError.jsonNetworkError((error as NSError).localizedDescription)))
         }
 
         
@@ -259,7 +282,7 @@ extension NetworkManager {
                 if let t = t as? String {
                     return .Success(t)
                 } else {
-                    return .Failure(NetworkError.GenericNetworkError("Data is not a string"))
+                    return .Failure(NetworkError.genericNetworkError("Data is not a string"))
                 }
             }
             
@@ -282,7 +305,7 @@ extension NetworkManager {
                 if let t = t as? String {
                     return .Success(t)
                 } else {
-                    return .Failure(NetworkError.GenericNetworkError("Data is not a string"))
+                    return .Failure(NetworkError.genericNetworkError("Data is not a string"))
                 }
             }
             
