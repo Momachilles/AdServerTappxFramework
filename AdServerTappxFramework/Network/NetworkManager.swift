@@ -16,17 +16,14 @@ struct NetworkManagerConstants {
     }
 }
 
-protocol ModelJSON {
-    associatedtype T
-    init(json: JSONDictionary<T>?) throws
-}
-
 //MARK: - NetworkError
 enum NetworkError<S>: Error {
+    
     case httpResponseNetworkError(S, Int)
     case genericNetworkError(S)
     case noNetworkNetworkError(S)
     case jsonNetworkError(S)
+    case requestNetworkError(S)
     
     func message() -> S {
         switch self {
@@ -37,6 +34,8 @@ enum NetworkError<S>: Error {
         case .noNetworkNetworkError(let s):
             return s
         case .jsonNetworkError(let s):
+            return s
+        case .requestNetworkError(let s):
             return s
         }
     }
@@ -171,94 +170,81 @@ typealias JSONDictionary<T> = Dictionary<String, T>
 typealias JSONArray = Array<JSONDictionary<Any>>
 
 ///The default callback
-typealias ResultCallback<T> = (_ result: Result<T>) -> ()
+//typealias ResultCallback<T> = (_ result: () throws -> TappxResult<T>) -> ()
+typealias ResultCallback<T> = (_ result: TappxResult<T>) -> ()
 
 internal class NetworkManager: NSObject {
     static var sharedInstance: NetworkManager = NetworkManager()
-
+    
     //MARK: Base methods
-    fileprivate func request(type: RequestType, paramString: String?) ->  URLRequest? {
-        let urlPath = NetworkManagerConstants.kBaseURL + type.rawValue + "?" + (paramString ?? "")
-        guard let url = URL(string: urlPath) else { return .none }
+    fileprivate func request(type: RequestType, paramString: String) throws ->  URLRequest? {
+        let urlPath = NetworkManagerConstants.kBaseURL + type.rawValue + "?" + paramString
+        guard let url = URL(string: urlPath) else { throw NetworkError.requestNetworkError("URL is not correct") }
         return URLRequest(url: url)
     }
-
-private func http(request: URLRequest, callback: @escaping ResultCallback<Any>) -> URLSessionTask {
     
-    print("Bytes sent: \(request.httpBody?.count)")
-    let configuration = URLSessionConfiguration.default
-    let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
-    let task = session.dataTask(with: request as URLRequest){ (data: Data?, response: URLResponse?, error: Error?) in
-        do {
-            try self.parseResponse(data: data, response: response, error: error) { callback($0) }
-        } catch {
-            callback(.Failure(error as! NetworkError<String>))
-        }
-    }
-    task.resume()
-    
-    return task
-}
-
-private func parseResponse(data responseData: Data?, response: URLResponse?, error: Error?, callback: ResultCallback<Any>) throws -> () {
-    
-    if let error = error {
-        let e = NetworkError.genericNetworkError(error.localizedDescription)
-        let r = Result<Any>(error: e)
-        callback(r)
-    }
-    
-    guard let response = response as? HTTPURLResponse else {
-        callback(.Failure(NetworkError.httpResponseNetworkError("Response is missing", 0)))
-        return
-    }
-    
-    guard let data = responseData else {
-        callback(.Failure(NetworkError.httpResponseNetworkError("No data present in response", response.statusCode)))
-        return
-    }
-    
-    guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.genericNetworkError("No content type defined") }
-    
-    switch response.statusCode {
-        
-    case 200 where content == "html": //Ok and it's html
-        
-        let dataString = String(data: data, encoding: String.Encoding.utf8)
-        print("Data (\(data.count) bytes): \(dataString)")
-        callback(.Success(dataString ?? ""))
-        
-    case 200 where content == "no_fill": // OK and no fill
-        print("No fill")
-        callback(.Success(""))
-        
-    default: // Error
-        callback(.Failure(NetworkError.genericNetworkError("Error in parseResponse: \(response.statusCode)")))
-    }
-
-}
-
-    fileprivate func httpPost(request: inout URLRequest, bodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<Any>) {
-        request.httpMethod = "POST"
+    fileprivate func httpPost(request: URLRequest, bodyParameters: TappxBodyParameters, callback: @escaping (_ result: () throws -> TappxResult<String>) -> ()) throws {
+        var req = request
+        req.httpMethod = "POST"
         
         //JSON
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue("Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36", forHTTPHeaderField: "User-Agent")
-        do {
-            //let jsonData = try JSONSerialization.data(withJSONObject: jsonParams, options: .prettyPrinted)
-            //request.httpBody = jsonData
-            request.httpBody = try bodyParameters.json()
-            self.http(request: request) {
-                callback($0)
-            }
-            
-        } catch {
-            callback(Result(error: NetworkError.jsonNetworkError((error as NSError).localizedDescription)))
+        req.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        req.setValue("Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36", forHTTPHeaderField: "User-Agent")
+        req.httpBody = try bodyParameters.json()
+        //let _ = try self.http(request: request, callback: callback)
+        
+        let _ = try self.http(request: request) { result in
+            let r = try! result()
+            print("Result: \(r)")
+            callback(result)
         }
-
         
     }
     
+    private func http(request: URLRequest, callback: @escaping (_ result: () throws -> TappxResult<String>) -> ()) throws -> URLSessionTask {
+        
+        print("Bytes sent: \(request.httpBody?.count)")
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+        
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            do {
+                try self.parseResponse(data: data, response: response, error: error) { result in callback({ return result }) }
+            } catch {
+                callback ({ throw error })
+            }
+        }
+        task.resume()
+        
+        return task
+    }
+    
+    private func parseResponse(data responseData: Data?, response: URLResponse?, error: Error?, callback: ResultCallback<String>) throws {
+        
+        if let error = error { throw NetworkError.genericNetworkError(error.localizedDescription) }
+        guard let response = response as? HTTPURLResponse else { throw NetworkError.genericNetworkError("Response is missing") }
+        guard let data = responseData else { throw NetworkError.genericNetworkError("No data present in response") }
+        guard let content = response.allHeaderFields["x-content"] as? String else { throw NetworkError.genericNetworkError("No content type defined") }
+        
+        switch response.statusCode {
+//            case 200 where content == "html": //Ok and it's html
+//                let dataString = String(data: data, encoding: String.Encoding.utf8)
+//                print("Data (\(data.count) bytes): \(dataString)")
+//                callback(.Success(dataString ?? ""))
+//            
+//            case 200 where content == "no_fill": // OK and no fill
+//                print("No fill")
+//                callback(.Success(""))
+            case 200:
+                let dataString = String(data: data, encoding: String.Encoding.utf8)
+                print("Data (\(data.count) bytes): \(dataString)")
+                let result = try TappxResult<String>(dataString ?? "", headers: TappxHeaders())
+                callback(result)
+            
+            default: // Error
+                throw NetworkError.httpResponseNetworkError("Error in parseResponse", response.statusCode)
+        }
+    }
 }
 
 //MARK: - NSURLSessionDelegate methods
@@ -268,48 +254,42 @@ extension NetworkManager: URLSessionDelegate {}
 //MARK: - Banner
 extension NetworkManager {
     
-    func interstitial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) {
+    func interstitial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping (_ result: () throws -> TappxResult<String>) -> ()) throws {
         
-        guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
-            callback(.Unknown)
-            return
-        }
-        self.httpPost(request: &request, bodyParameters: tappxBodyParameters) { data in
+        guard let request = try self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else { return }
+        
+        try self.httpPost(request: request, bodyParameters: tappxBodyParameters) { result in
             
             //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
             
+            /*
             let result: Result<String> = data.flatMap { t in
                 if let t = t as? String {
                     return .Success(t)
                 } else {
                     return .Failure(NetworkError.genericNetworkError("Data is not a string"))
                 }
-            }
+            }*/
             
             callback(result)
         }
-
+        
     }
     
-    func banner(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) {
+    func banner(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) throws {
         
-        guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
-            callback(.Unknown)
-            return
-        }
-        self.httpPost(request: &request, bodyParameters: tappxBodyParameters) { data in
+        guard let request = try self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else { return }
+        try self.httpPost(request: request, bodyParameters: tappxBodyParameters) { result in
             
-            //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
+//            let result: Result<String> = data.flatMap { t in
+//                if let t = t as? String {
+//                    return .Success(t)
+//                } else {
+//                    return .Failure(NetworkError.genericNetworkError("Data is not a string"))
+//                }
+//            }
             
-            let result: Result<String> = data.flatMap { t in
-                if let t = t as? String {
-                    return .Success(t)
-                } else {
-                    return .Failure(NetworkError.genericNetworkError("Data is not a string"))
-                }
-            }
-            
-            callback(result)
+            //callback(result)
         }
         
     }

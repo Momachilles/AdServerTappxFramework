@@ -10,10 +10,10 @@ import UIKit
 
 internal class DataManager: NSObject {
     
-    internal static func tappxBanner(withSize forcedSize: BannerForcedSize? = .none, callback: @escaping (Result<String>) -> ()) {
+    internal static func tappxBanner(withSize forcedSize: BannerForcedSize? = .none, callback: @escaping ResultCallback<String>) throws {
         
+        let json = TappxBodyParameters()
         var params = TappxQueryStringParameters()
-        
         forcedSize.map { params.fsz = $0.rawValue }
         params.at = .banner
         
@@ -23,18 +23,18 @@ internal class DataManager: NSObject {
             params.test = 0
         #endif
         
-        let json = TappxBodyParameters()
-        
-        NetworkManager.sharedInstance.banner(tappxQueryStringParameters: params, tappxBodyParameters: json) {
-            callback($0)
+        try NetworkManager.sharedInstance.banner(tappxQueryStringParameters: params, tappxBodyParameters: json) { result in
+            DispatchQueue.main.async() {
+                //callback(result)
+            }
         }
         
     }
     
-    internal static func tappxInterstitial(withSize forcedSize: InterstitialForcedSize? = .none, callback: @escaping (Result<String>) -> ()) {
+    internal static func tappxInterstitial(withSize forcedSize: InterstitialForcedSize? = .none, callback: @escaping ResultCallback<String>) throws {
         
+        let json = TappxBodyParameters()
         var params = TappxQueryStringParameters()
-        
         forcedSize.map { params.fsz = $0.rawValue }
         params.at = .interstitial
         
@@ -44,13 +44,12 @@ internal class DataManager: NSObject {
             params.test = 0
         #endif
         
-        let json = TappxBodyParameters()
-        
-        NetworkManager.sharedInstance.interstitial(tappxQueryStringParameters: params, tappxBodyParameters: json) {
-            callback($0)
+        try NetworkManager.sharedInstance.banner(tappxQueryStringParameters: params, tappxBodyParameters: json) { result in
+            DispatchQueue.main.async() {
+                //callback(result)
+            }
         }
         
     }
-    
     
 }

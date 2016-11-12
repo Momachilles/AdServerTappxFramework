@@ -38,7 +38,7 @@ class AdServerTappxFrameworkTests: XCTestCase {
         
         let body = TappxBodyParameters()
         
-        do { let p = try body.json()
+        do { let _ = try body.json()
         } catch {
             
         }
