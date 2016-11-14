@@ -80,73 +80,73 @@ func >>><T, U>(left: TappxResult<T>, right: (T) throws -> TappxResult<U>) rethro
 
 
 //MARK: - Result
-enum Result<T> {
-    case Success(T)
-    case Failure(NetworkError<String>)
-    case Unknown
-    
-    init(value: T? = .none, error: NetworkError<String>? = .none) {
-        if let err = error {
-            self = .Failure(err)
-        } else if let v = value {
-            self = .Success(v)
-        } else {
-            self = .Unknown
-        }
-    }
-    
-    func value() -> T? {
-        switch self {
-        case .Success(let t):
-            return t
-        case .Failure:
-            return .none
-        case .Unknown:
-            return .none
-        }
-    }
-}
-
-extension Result {
-    
-    func map<U>(f: (T)->U) -> Result<U> {
-        switch self {
-        case .Success(let t): return .Success(f(t))
-        case .Failure(let err): return .Failure(err)
-        case .Unknown: return .Unknown
-        }
-    }
-    
-    func flatMap<U>(f: (T) -> Result<U>) -> Result<U> {
-        switch self {
-        case .Success(let t): return f(t)
-        case .Failure(let err): return .Failure(err)
-        case .Unknown:
-        return .Unknown
-        }
-    }
-}
-
-extension Result {
-    // Return the value if it's a .Success or throw the error if it's a .Failure
-    func resolve() throws -> T? {
-        switch self {
-        case .Success(let value): return value
-        case .Failure(let error): throw error
-        case .Unknown: return .none
-        }
-    }
-    
-    // Construct a .Success if the expression returns a value or a .Failure if it throws
-    init( _ throwingExpr: () throws -> T) {
-        do {
-            let value = try throwingExpr()
-            self = Result.Success(value)
-        } catch (let error as NSError) {
-            self = Result.Failure(.genericNetworkError(error.localizedDescription))
-        }
-    }
-}
+//enum Result<T> {
+//    case success(T)
+//    case failure(NetworkError<String>)
+//    case Unknown
+//    
+//    init(value: T? = .none, error: NetworkError<String>? = .none) {
+//        if let err = error {
+//            self = .failure(err)
+//        } else if let v = value {
+//            self = .success(v)
+//        } else {
+//            self = .Unknown
+//        }
+//    }
+//    
+//    func value() -> T? {
+//        switch self {
+//        case .success(let t):
+//            return t
+//        case .failure:
+//            return .none
+//        case .Unknown:
+//            return .none
+//        }
+//    }
+//}
+//
+//extension Result {
+//    
+//    func map<U>(f: (T)->U) -> Result<U> {
+//        switch self {
+//        case .success(let t): return .success(f(t))
+//        case .failure(let err): return .failure(err)
+//        case .Unknown: return .Unknown
+//        }
+//    }
+//    
+//    func flatMap<U>(f: (T) -> Result<U>) -> Result<U> {
+//        switch self {
+//        case .success(let t): return f(t)
+//        case .failure(let err): return .failure(err)
+//        case .Unknown:
+//        return .Unknown
+//        }
+//    }
+//}
+//
+//extension Result {
+//    // Return the value if it's a .success or throw the error if it's a .failure
+//    func resolve() throws -> T? {
+//        switch self {
+//        case .success(let value): return value
+//        case .failure(let error): throw error
+//        case .Unknown: return .none
+//        }
+//    }
+//    
+//    // Construct a .success if the expression returns a value or a .failure if it throws
+//    init( _ throwingExpr: () throws -> T) {
+//        do {
+//            let value = try throwingExpr()
+//            self = Result.success(value)
+//        } catch (let error as NSError) {
+//            self = Result.failure(.genericNetworkError(error.localizedDescription))
+//        }
+//    }
+//}
 
 enum OperationType {
     case Public
@@ -192,7 +192,7 @@ private func http(request: URLRequest, callback: @escaping ResultCallback<Any>) 
         do {
             try self.parseResponse(data: data, response: response, error: error) { callback($0) }
         } catch {
-            callback(.Failure(error as! NetworkError<String>))
+            callback(.failure(error as! NetworkError<String>))
         }
     }
     task.resume()
@@ -204,17 +204,17 @@ private func parseResponse(data responseData: Data?, response: URLResponse?, err
     
     if let error = error {
         let e = NetworkError.genericNetworkError(error.localizedDescription)
-        let r = Result<Any>(error: e)
+        let r = Result<Any>.failure(e)
         callback(r)
     }
     
     guard let response = response as? HTTPURLResponse else {
-        callback(.Failure(NetworkError.httpResponseNetworkError("Response is missing", 0)))
+        callback(.failure(NetworkError.httpResponseNetworkError("Response is missing", 0)))
         return
     }
     
     guard let data = responseData else {
-        callback(.Failure(NetworkError.httpResponseNetworkError("No data present in response", response.statusCode)))
+        callback(.failure(NetworkError.httpResponseNetworkError("No data present in response", response.statusCode)))
         return
     }
     
@@ -226,14 +226,14 @@ private func parseResponse(data responseData: Data?, response: URLResponse?, err
         
         let dataString = String(data: data, encoding: String.Encoding.utf8)
         print("Data (\(data.count) bytes): \(dataString)")
-        callback(.Success(dataString ?? ""))
+        callback(.success(dataString ?? ""))
         
     case 200 where content == "no_fill": // OK and no fill
         print("No fill")
-        callback(.Success(""))
+        callback(.success(""))
         
     default: // Error
-        callback(.Failure(NetworkError.genericNetworkError("Error in parseResponse: \(response.statusCode)")))
+        callback(.failure(NetworkError.genericNetworkError("Error in parseResponse: \(response.statusCode)")))
     }
 
 }
@@ -253,7 +253,7 @@ private func parseResponse(data responseData: Data?, response: URLResponse?, err
             }
             
         } catch {
-            callback(Result(error: NetworkError.jsonNetworkError((error as NSError).localizedDescription)))
+            callback(Result<Any>.failure(NetworkError.jsonNetworkError((error as NSError).localizedDescription)))
         }
 
         
@@ -271,18 +271,18 @@ extension NetworkManager {
     func interstitial(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) {
         
         guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
-            callback(.Unknown)
+            callback(Result<String>.failure(NetworkError.genericNetworkError("Error in request")))
             return
         }
         self.httpPost(request: &request, bodyParameters: tappxBodyParameters) { data in
             
-            //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
+            //guard let data = data.value() as? String else { callback(.failure(NetworkError.GenericNetworkError("Data is not a string"))) }
             
             let result: Result<String> = data.flatMap { t in
                 if let t = t as? String {
-                    return .Success(t)
+                    return .success(t)
                 } else {
-                    return .Failure(NetworkError.genericNetworkError("Data is not a string"))
+                    return .failure(NetworkError.genericNetworkError("Data is not a string"))
                 }
             }
             
@@ -294,18 +294,18 @@ extension NetworkManager {
     func banner(tappxQueryStringParameters: TappxQueryStringParameters, tappxBodyParameters: TappxBodyParameters, callback: @escaping ResultCallback<String>) {
         
         guard var request = self.request(type: .RequestAd, paramString: tappxQueryStringParameters.urlString()) else {
-            callback(.Unknown)
+            callback(Result<String>.failure(NetworkError.genericNetworkError("Error in request")))
             return
         }
         self.httpPost(request: &request, bodyParameters: tappxBodyParameters) { data in
             
-            //guard let data = data.value() as? String else { callback(.Failure(NetworkError.GenericNetworkError("Data is not a string"))) }
+            //guard let data = data.value() as? String else { callback(.failure(NetworkError.GenericNetworkError("Data is not a string"))) }
             
             let result: Result<String> = data.flatMap { t in
                 if let t = t as? String {
-                    return .Success(t)
+                    return .success(t)
                 } else {
-                    return .Failure(NetworkError.genericNetworkError("Data is not a string"))
+                    return .failure(NetworkError.genericNetworkError("Data is not a string"))
                 }
             }
             

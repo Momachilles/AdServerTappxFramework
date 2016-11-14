@@ -20,13 +20,6 @@ struct RequestConstants {
     static var tappxHeadersAssociationKey = "TappxHeaders"
 }
 
-enum QueryAdType: String {
-    case banner = "banner"
-    case interstitial = "interstitial"
-}
-
-
-
 struct TappxQueryStringParameters {
     /// Timestamp in millisencods (epoch format)
     var ts: TimeInterval { return Date.timeIntervalBetween1970AndReferenceDate }
