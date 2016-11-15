@@ -50,6 +50,8 @@ class DatasourceTests: XCTestCase {
         
         if context == context {
             if keyPath == "banner" {
+                guard let banner = change?[.newKey] as? Banner else { return XCTFail("Success is not a banner") }
+                print(banner)
                 self.dataSource.initializedModelExpectation?.fulfill()
             }
             

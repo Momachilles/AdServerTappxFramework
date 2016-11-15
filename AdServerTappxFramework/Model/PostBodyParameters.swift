@@ -12,6 +12,8 @@ typealias BodyParameters = [String: Any]
 
 internal protocol PostBodyParameterSet {
     
+    ///Optional Keywords
+    var okw: String { get set }
     ///SDK Version
     var sdkv: String { get set }
     ///SDK Type [Could be set by developer to create news SDK for other frameworks (PhoneGAP, Unity, etc.)]
@@ -99,13 +101,15 @@ internal protocol PostBodyParameterSet {
 
 internal struct PostBodyParameters: PostBodyParameterSet {
 
+    /*
     var okw: String {
         guard
             let settings = AdServerTappxFramework.sharedInstance.settings,
             let kws = settings.keywords
             else { return "" }
         return kws.joined(separator: ",")
-    }
+    }*/
+    var okw = "1"
     var sdkv = "3.0.0"
     var sdkt = "native"
     var mediator = ""
@@ -153,45 +157,51 @@ internal struct PostBodyParameters: PostBodyParameterSet {
             }
         }
         
-        //Mirror not working with stored properties
-        parameters["okw"] = self.okw
-        
         return parameters
     }
     
-    func defaultParameters() -> BodyParameters {
+    static func initDefault() -> PostBodyParameters {
         
-        let params: BodyParameters = [
-            "okw": "1",
-            "sdkv": "3.0.0",
-            "sdkt": "native",
-            "gpscv": 9452030,
-            "gpslv": 8301430,
-            "mraid": 2.0,
-            "aid": "96bd03b6-defc-4203-83d3-dc1c730801f7",
-            "aida": "acc106e89b01a1ef12bd870089e0ed9d",
-            "dmn": "Samsung",
-            "dmo": "GT-i9300",
-            "dmp": "Galaxy S3",
-            "dos": "android",
-            "dov": "6.0.1",
-            "dsw": 1080,
-            "dsh": 1920,
-            "dsd": 3.0,
-            "dua": "Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36",
-            "dln": "es-ES",
-            "dct": "wifi",
-            "soc": 21407,
-            "son": "Movistar",
-            "scc": "ES",
-            "noc": 21407,
-            "non": "Movistar",
-            "ncc": "ES",
-            "aln": "en-US",
-            "ab": "com.tappx.apptest",
-            "an": "AppTest for Tappx",
-            "gz": "+0000"
-        ]
+        var params = PostBodyParameters()
+        
+        params.okw = "4"
+        params.sdkv = "3.0.0"
+        params.sdkt = "native"
+        params.mediator = ""
+        params.gpscv = 9452030
+        params.gpslv = 8301430
+        params.mraid = 2.0
+        params.aid = "96bd03b6-defc-4203-83d3-dc1c730801f7"
+        params.aida = "acc106e89b01a1ef12bd870089e0ed9d"
+        params.aidl = false
+        params.dmn = "Samsung"
+        params.dmo = "GT-i9300"
+        params.dmp = "Galaxy S3"
+        params.dos = "android"
+        params.dov = "6.0.1"
+        params.dsw = 1080
+        params.dsh = 1920
+        params.dsd = 3.0
+        params.dua =  "Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36"
+        params.dln = "es-ES"
+        params.dct = "wifi"
+        params.soc = 21407
+        params.son = "Movistar"
+        params.scc = "ES"
+        params.noc = 21407
+        params.non = "Movistar"
+        params.ncc = "ES"
+        params.aln = "en-US"
+        params.ab = "com.tappx.apptest"
+        params.an = "AppTest for Tappx"
+        params.geo = ""
+        params.ga = 0
+        params.gf = 0
+        params.gz = "+0000"
+        params.oyob = 0
+        params.oage = 0
+        params.ogender = ""
+        params.omarital = ""
         
         return params
         

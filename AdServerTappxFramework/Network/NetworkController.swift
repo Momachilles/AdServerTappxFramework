@@ -103,11 +103,22 @@ public struct NetworkController: Reachable {
         
     }
     
-    func request(endpoint: NetworkEndpoint, queryParams: QueryStringParameters = QueryStringParameters()) ->  URLRequest? {
+    func request(endpoint: NetworkEndpoint, queryParams: QueryStringParameters = QueryStringParameters(), bodyParams: PostBodyParameters = PostBodyParameters.initDefault()) ->  URLRequest? {
         let paramString = queryParams.urlString()
         let urlPath = NetworkConstants.kBaseURL + endpoint.path() + "?" + paramString
         guard let url = URL(string: urlPath) else { return .none }
-        return URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        //JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("Mozilla/5.0 (Linux; Android 5.0.1; en-us; SM-N910V Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36", forHTTPHeaderField: "User-Agent")
+        do {
+            request.httpBody = try bodyParams.json()
+            return request
+        } catch {
+            return .none
+        }
     }
     
     func finishSession() {
