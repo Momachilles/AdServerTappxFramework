@@ -21,16 +21,37 @@ class AdServerTappxFrameworkTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInitFramework() {
+        
+        AdServerTappxFramework.sharedInstance(from: "123")
+        var s = Settings()
+        s.age = "44"
+        
+        AdServerTappxFramework.sharedInstance.settings = s
+        
+        guard let age = AdServerTappxFramework.sharedInstance.settings?.age else {
+            XCTFail("Not Age set")
+            return
+        }
+        
+        XCTAssertEqual("44", age, "Age is different")
+        
+        let body = TappxBodyParameters()
+        
+        do { let p = try body.json()
+        } catch {
+            
+        }
+        
+    }
+
+    
+    func testClient() {
+        let client = Greetings()
+        client.sayHello()
+        print("Adapter: \(client.adapterId)")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    
     
 }

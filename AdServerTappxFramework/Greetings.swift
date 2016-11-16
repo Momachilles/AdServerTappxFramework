@@ -16,5 +16,11 @@ public class Greetings: NSObject, TappxAdabtable {
     public func initialize() {
         AdServerTappxFramework.sharedInstance(from: "123")
         AdServerTappxFramework.sharedInstance.assignAdapters(new: [self])
+        
+        var s = Settings()
+        s.age = "44"
+        
+        AdServerTappxFramework.sharedInstance.settings = s
+        
     }
 }

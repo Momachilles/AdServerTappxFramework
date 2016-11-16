@@ -6,13 +6,16 @@
 //  Copyright © 2016 4Crew. All rights reserved.
 //
 
+import Foundation
 
-public struct TappxFrameworkConstants {
-    static fileprivate let clientIdKey = "ClientIdKey"
-    static fileprivate var tappxAssociationKey: UInt8 = 0
+struct TappxFrameworkConstants {
+    static let clientIdKey = "ClientIdKey"
+    static var tappxAssociationKey: UInt8 = 0
+    static var tappxSettingsAssociationKey = "TappxSettings"
 }
 
 
+// MARK: - Adapter Protocols
 public protocol TappxAdabtable {
     var adapterId: String { get set }
     func doSomething()
@@ -43,6 +46,49 @@ public class AdServerTappxFramework: NSObject {
     
 }
 
+// MARK: - Settings Protocol
+
+enum Gender: String {
+    case Male   = "male"
+    case Female = "female"
+    case Other  = "Other"
+}
+
+enum Marital: String {
+    case Single         = "Single"
+    case LivingCommon   = "Living Common"
+    case Married        = "Married"
+    case Divorced       = "Divorced"
+    case Widowed        = "Widowed"
+}
+
+enum BannerForcedSize: String {
+    case x320y50    = "320x50"
+    case x728y90    = "728x90"
+    case x300y250   = "300x250"
+}
+
+enum InterstitialForcedSize: String {
+    case x320y480   = "320x480"
+    case x480y320   = "480x320"
+    case x768y1024  = "768x1024"
+    case x1024y768  = "1024x768"
+}
+
+struct Settings {
+    var sdkType: String?
+    var mediator: String?
+    var keywords: [String]?
+    var yearOfBirth: String?
+    var age: String?
+    var gender: Gender?
+    var marital: Marital?
+}
+
+protocol TappxSettings {
+    var settings: Settings? { get set }
+}
+
 // MARK: - Client
 extension AdServerTappxFramework {
     
@@ -67,13 +113,11 @@ extension AdServerTappxFramework {
 }
 
 // MARK: - Adapters
-
 extension AdServerTappxFramework: TappxAdaptableContainer {
+    
     internal func removeAdapter(adapter: TappxAdabtable) throws {
-        
         guard let index = self.adapters.index(where: { $0.adapterId == adapter.adapterId }) else { throw NSError(domain: "Adapter doesn't exists", code: -10, userInfo: [:]) }
         self.adapters.remove(at: index)
-        
     }
 
     internal func addAdapter(adapter: TappxAdabtable) {
@@ -90,6 +134,14 @@ extension AdServerTappxFramework: TappxAdaptableContainer {
         set { objc_setAssociatedObject(self, &TappxFrameworkConstants.tappxAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
     
-    
-    
 }
+
+extension AdServerTappxFramework: TappxSettings  {
+    
+    var settings: Settings? {
+        get { return (objc_getAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey) as? Associated<Settings>)?.associatedValue() }
+        set { objc_setAssociatedObject(self, &TappxFrameworkConstants.tappxSettingsAssociationKey, newValue.map { Associated<Settings>($0) }, .OBJC_ASSOCIATION_RETAIN) }
+    }
+}
+
+
