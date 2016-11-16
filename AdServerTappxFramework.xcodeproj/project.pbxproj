@@ -29,6 +29,8 @@
 		D133A5741DD1EF5A0086609F /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
 		D133A5751DD1EF5A0086609F /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
 		D133A5761DD1EF5B0086609F /* Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126C69F1DCF970600EC3F97 /* Associated.swift */; };
+		D13ECEA41DDCC4C0008BDB06 /* TappxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13ECEA31DDCC4C0008BDB06 /* TappxViewController.swift */; };
+		D13ECEA51DDCC4C0008BDB06 /* TappxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13ECEA31DDCC4C0008BDB06 /* TappxViewController.swift */; };
 		D18B6A971DD8E003001DCEB8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18B6A961DD8E003001DCEB8 /* Result.swift */; };
 		D18B6A981DD8E003001DCEB8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18B6A961DD8E003001DCEB8 /* Result.swift */; };
 		D18B6A991DD8E003001DCEB8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18B6A961DD8E003001DCEB8 /* Result.swift */; };
@@ -135,6 +137,7 @@
 /* Begin PBXFileReference section */
 		D108053E1DC2088100E5922B /* URLRequest+Tappx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Tappx.swift"; sourceTree = "<group>"; };
 		D126C69F1DCF970600EC3F97 /* Associated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Associated.swift; sourceTree = "<group>"; };
+		D13ECEA31DDCC4C0008BDB06 /* TappxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappxViewController.swift; sourceTree = "<group>"; };
 		D16B368C1DD5E77E00BE4C72 /* AdServerTappxFrameworkTestKeywordOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkTestKeywordOne.swift; sourceTree = "<group>"; };
 		D16B368F1DD5ED8C00BE4C72 /* AdServerTappxFrameworkTestKeywordTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkTestKeywordTwo.swift; sourceTree = "<group>"; };
 		D16B36921DD5EEE700BE4C72 /* AdServerTappxFrameworkTestKeywordThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdServerTappxFrameworkTestKeywordThree.swift; sourceTree = "<group>"; };
@@ -258,6 +261,14 @@
 			name = "Old Tests";
 			sourceTree = "<group>";
 		};
+		D18B6AE51DDCA6D5001DCEB8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D13ECEA31DDCC4C0008BDB06 /* TappxViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		D1AC85851DBA236100088A74 = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +294,7 @@
 		D1AC85911DBA236100088A74 /* AdServerTappxFramework */ = {
 			isa = PBXGroup;
 			children = (
+				D18B6AE51DDCA6D5001DCEB8 /* ViewControllers */,
 				D18B6AAF1DD9C012001DCEB8 /* Datasource */,
 				D18B6A951DD8DFB0001DCEB8 /* Model */,
 				D1B9A4881DBE17450083164E /* Extensions */,
@@ -537,6 +549,7 @@
 				D18B6A971DD8E003001DCEB8 /* Result.swift in Sources */,
 				D18B6AB11DD9C140001DCEB8 /* TappxSignaler.swift in Sources */,
 				D18B6ADC1DDA1EE3001DCEB8 /* PostBodyParameters.swift in Sources */,
+				D13ECEA41DDCC4C0008BDB06 /* TappxViewController.swift in Sources */,
 				D18B6AAB1DD9BEE2001DCEB8 /* Banner.swift in Sources */,
 				D108053F1DC2088100E5922B /* URLRequest+Tappx.swift in Sources */,
 				D1B9A47F1DBE0D8A0083164E /* NetworkManager.swift in Sources */,
@@ -602,6 +615,7 @@
 				D18B6AA81DD8EB63001DCEB8 /* Future.swift in Sources */,
 				D18B6ADE1DDA1EE3001DCEB8 /* PostBodyParameters.swift in Sources */,
 				D18B6ABD1DD9CE24001DCEB8 /* Interstitial.swift in Sources */,
+				D13ECEA51DDCC4C0008BDB06 /* TappxViewController.swift in Sources */,
 				D1B9A4911DBE6ECA0083164E /* String+URL.swift in Sources */,
 				D18B6AA31DD8E7A4001DCEB8 /* Reachable.swift in Sources */,
 				D1EF1BA91DBA651D00A951F2 /* AdServerTappxFramework.swift in Sources */,

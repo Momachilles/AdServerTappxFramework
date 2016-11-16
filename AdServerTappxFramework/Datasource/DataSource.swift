@@ -35,10 +35,13 @@ class DataSource: NSObject {
     
     func tappxBanner(withSize forcedSize: BannerForcedSize? = .none) {
         
+        self.isUpdating = true
+        
         let newBanner: (Banner) -> () = { [unowned self] banner in
             
             DispatchQueue.main.async { [unowned self] in
                 self.banner = banner
+                self.isUpdating = false
             }
             
         }
@@ -46,17 +49,16 @@ class DataSource: NSObject {
         let raiseError: (Error) -> () = { error in
             
             DispatchQueue.main.async { [unowned self] in
-                self.isUpdating = false
                 let info = [NSLocalizedDescriptionKey: "\(error)"]
                 let error = NSError(domain: "com.tappx.TappxFramework", code: -101, userInfo: info)
                 self.error = error
+                self.isUpdating = false
             }
         }
         
-        let future = self.signaler.future()
+        let future = self.signaler.bannerFuture()
         
         future.start { result in
-            
             switch result {
             case .success(let banner):
                 newBanner(banner)

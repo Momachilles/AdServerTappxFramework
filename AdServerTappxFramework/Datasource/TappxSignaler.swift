@@ -42,7 +42,7 @@ final class TappxSignaler: NSObject {
     private let controller = NetworkController()
     private let error: Error? = .none
     
-    func future() -> BannerFuture {
+    func bannerFuture() -> BannerFuture {
         
         let future: BannerFuture = Future { [unowned self] completion in
             
