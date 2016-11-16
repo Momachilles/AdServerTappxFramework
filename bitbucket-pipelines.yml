@@ -5,8 +5,12 @@
 # You can specify a custom docker image from Docker Hub as your build environment.
 # image: docker-image:tag
 
+image: swiftdocker/swift:latest
+
 pipelines:
   default:
     - step:
         script:
           - echo "Everything is awesome!"
+          - swift --version
+          - xcodebuild -usage
