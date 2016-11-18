@@ -68,6 +68,7 @@ enum BannerForcedSize: String {
     case x300y250   = "300x250"
 }
 
+///iPad/iPhone
 enum InterstitialForcedSize: String {
     case x320y480   = "320x480"
     case x480y320   = "480x320"
