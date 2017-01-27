@@ -34,7 +34,9 @@ fi
 # 4
 # Build the framework for device and for simulator (using
 # all needed architectures).
-xcodebuild clean build -target "${FRAMEWORK_NAME}" -configuration $CONFIGURATION -arch i386 -arch x86_64 only_active_arch=no defines_module=yes -iphoneos_deployment_target=7.0 -SHALLOW_BUNDLE=NO ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=YES -sdk "iphonesimulator"
-
+# xcodebuild clean build -target "${FRAMEWORK_NAME}" -configuration $CONFIGURATION -arch i386 -arch x86_64 only_active_arch=no defines_module=yes -iphoneos_deployment_target=7.0 -SHALLOW_BUNDLE=NO ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=YES -sdk "iphonesimulator"
+SDK=/Applications/Xcode7.3.1.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+SDK=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk
+xcodebuild clean build -target "${FRAMEWORK_NAME}" -configuration $CONFIGURATION -arch i386 -arch x86_64 only_active_arch=no defines_module=yes -iphoneos_deployment_target=7.0 -SHALLOW_BUNDLE=NO ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=YES -sdk "$SDK"
 # Set the command line tools to Xcode 8
 # sudo -S xcode-select -s /Applications/Xcode.app/Contents/Developer/
